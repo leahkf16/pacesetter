@@ -91,8 +91,54 @@ function undoWater(){if(!waterUndo||waterUndo.date!==today()){alert('No recent w
 function setWaterGoal(){let v=Number(el('waterGoalInput').value);if(!Number.isFinite(v)||v<17||v>200){alert('Choose a tracking goal between 17 and 200 oz. This is not a prescribed intake.');return}state.waterGoalMl=Math.round(v*29.5735295625);save();queueSync();render()}
 function initCloud(){if(!state.sync.url||!state.sync.key||!window.supabase)return false;try{client=window.supabase.createClient(state.sync.url,state.sync.key);return true}catch{return false}}
 async function authCloud(mode){state.sync.url=el('cloudUrl').value.trim();state.sync.key=el('cloudKey').value.trim();state.sync.email=el('cloudEmail').value.trim();save();if(!initCloud()){alert('Enter a valid Supabase URL and public key.');return}let password=el('cloudPassword').value;if(password.length<8){alert('Password must be at least 8 characters.');return}try{let r=mode==='signup'?await client.auth.signUp({email:state.sync.email,password}):await client.auth.signInWithPassword({email:state.sync.email,password});if(r.error)throw r.error;if(!r.data.session){alert('Account created. Confirm your email, then sign in.');return}sessionUser=r.data.user;cloudReady=true;await syncNow();render()}catch(e){alert(e.message)}}
-async function restoreCloud(){if(!initCloud())return;try{let {data}=await client.auth.getSession();if(data.session){sessionUser=data.session.user;cloudReady=true;await syncNow();render()}}catch(e){console.warn(e)}}
-function payload(){let {sync,role,tab,coachLink,...data}=state;return data}async function syncNow(){if(!client||!cloudReady||!sessionUser){alert('Sign in to cloud sync first.');return}try{if(state.role==='coach'&&state.coachLink){let {data,error}=await client.rpc('coach_read_athlete',{invite:state.coachLink});if(error)throw error;if(data){state=merge(state,data);save();render();alert('Coach dashboard updated from athlete data.');return}}let {data:remote,error:readError}=await client.from('profiles').select('data').eq('id',sessionUser.id).maybeSingle();if(readError)throw readError;if(remote?.data){let server=remote.data;let local=payload();let joined={...server,scores:dedupScores([...(server.scores||[]),...(local.scores||[])]),workouts:{...(server.workouts||{}),...(local.workouts||{})},fatigue:{...(server.fatigue||{}),...(local.fatigue||{})},water:{...(server.water||{}),...(local.water||{})}};state=merge(state,joined)}let {error}=await client.from('profiles').upsert({id:sessionUser.id,data:payload(),updated_at:new Date().toISOString()});if(error)throw error;save();render()}catch(e){alert('Sync failed: '+e.message)}}function dedupScores(xs){let m=new Map;xs.forEach(x=>m.set([x.date,x.push,x.sit,x.run,x.pacer].join('|'),x));return [...m.values()].sort((a,b)=>b.date.localeCompare(a.date))}let syncPending=false;function queueSync(){if(!cloudReady||syncPending||state.role==='coach')return;syncPending=true;setTimeout(async()=>{syncPending=false;await syncNowSilent()},1200)}async function syncNowSilent(){if(!client||!sessionUser)return;try{await client.from('profiles').upsert({id:sessionUser.id,data:payload(),updated_at:new Date().toISOString()})}catch(e){console.warn('Offline: local changes retained',e)}}
-async function createInvite(){if(!cloudReady){alert('Sign in as the athlete first.');return}try{let {data,error}=await client.rpc('make_invite');if(error)throw error;el('inviteResult').textContent='Share this code with your coach: '+data}catch(e){alert(e.message)}}async function joinAthlete(){state.coachLink=el('inviteCode').value.trim().toUpperCase();save();if(!cloudReady){alert('Sign in first.');return}try{let {data,error}=await client.rpc('coach_read_athlete',{invite:state.coachLink});if(error)throw error;if(!data){alert('Code not found.');return}state=merge(state,data);save();render();alert('Athlete linked! Use Sync now to refresh.') }catch(e){alert(e.message)}}
+
+async function joinAthlete() {
+  if (!cloudReady || !sessionUser) {
+    alert('Sign in to your Coach account first.');
+    return;
+  }
+
+  const code = el('inviteCode').value.trim().toUpperCase();
+
+  if (!code) {
+    alert('Enter your athlete invitation code.');
+    return;
+  }
+
+  try {
+    // First, redeem the invitation and authorize the coach.
+    const { error: joinError } = await client.rpc(
+      'join_invite',
+      { invite_code: code }
+    );
+
+    if (joinError) throw joinError;
+
+    // Next, load the athlete's workout information.
+    const { data, error: readError } = await client.rpc(
+      'coach_read_athlete',
+      { invite: code }
+    );
+
+    if (readError) throw readError;
+
+    // Save the connection only after successful authorization.
+    state.coachLink = code;
+
+    if (data) {
+      state = merge(state, data);
+    }
+
+    save();
+    render();
+
+    alert('Athlete connected successfully! Your Coach dashboard is ready.');
+
+  } catch (e) {
+    alert('Could not link athlete: ' + e.message);
+  }
+}
+
+  
 if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});render();restoreCloud();
 </script></body></html>
