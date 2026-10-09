@@ -143,8 +143,36 @@ async function sendLoveNote(message){
  }catch(e){alert('Could not send Love Note: '+e.message)}finally{loveBusy=false}
 }
 function sendQuickLove(){return sendLoveNote(state.role==='coach'?'Sending you all my love ❤️':'Sending you love back, baby ❤️')}
+// Automatically refresh cloud data every 2 minutes while PACESETTER is open.
+const AUTO_SYNC_MS = 2 * 60 * 1000;
+let autoSyncBusy = false;
+async function autoSyncPacesetter() {
+  if (autoSyncBusy || document.hidden || !cloudReady || !sessionUser || !client) return;
+  autoSyncBusy = true;
+  try {
+    // Avoid replacing an unsent Love Note while the user is typing.
+    const draft = document.getElementById('loveMessage');
+    const draftText = draft ? draft.value : null;
+    if (state.role === 'coach') {
+      await refreshCoach();
+    } else {
+      // Save locally recorded athlete progress before retrieving messages.
+      await syncNowSilent();
+    }
+    await loadLoveNotes();
+    render();
+    if (draftText !== null && document.getElementById('loveMessage')) {
+      document.getElementById('loveMessage').value = draftText;
+    }
+  } catch (error) {
+    console.warn('PACESETTER automatic sync:', error);
+  } finally {
+    autoSyncBusy = false;
+  }
+}
+setInterval(autoSyncPacesetter, AUTO_SYNC_MS);
 // Check for new messages when the app returns to the foreground.
-document.addEventListener('visibilitychange',()=>{if(!document.hidden&&cloudReady)loadLoveNotes().then(render).catch(console.warn)});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)autoSyncPacesetter()});
 
 // Startup: migrate existing Supabase v2 browser session if possible.
 tryMigrateSession();
