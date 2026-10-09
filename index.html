@@ -1,187 +1,3835 @@
+
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#102f28"><link rel="manifest" href="manifest.webmanifest"><title>PACESETTER | Training Club</title>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#102f28">
+<link rel="manifest" href="manifest.webmanifest">
+<title>PACESETTER | Training Club</title>
 <style>
-:root{--bg:#f6f4ee;--ink:#17362f;--green:#123b32;--sage:#dce9d9;--gold:#e3ba6c;--blue:#e8f1f4;--muted:#70847c;--line:#dfe6df}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}header{background:#102f28;color:white;padding:25px 20px 26px;border-radius:0 0 30px 30px}main{max-width:920px;margin:auto;padding:18px 16px 110px}.top{max-width:920px;margin:auto}.eyebrow{font-size:11px;font-weight:800;letter-spacing:2px;color:#d9c08a}.brand{font-weight:900;font-size:25px;letter-spacing:1px;margin:5px 0}.tagline{color:#b7d0c5;font-size:13px}.headrow,.flex{display:flex;align-items:center;justify-content:space-between;gap:12px}.row{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.pill{background:#2d5549;border:1px solid #547469;color:#f6f4ee;padding:8px 12px;border-radius:50px;font-size:12px}.hero{background:linear-gradient(130deg,#1b4a3c,#16352f);border-radius:24px;color:white;padding:22px;margin-bottom:16px}.hero h1{margin:8px 0;font-size:27px;line-height:1.15}.hero p{color:#d5e7db;font-size:13px}.metricgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.metric{background:white;border:1px solid var(--line);padding:17px;border-radius:19px;min-width:0}.metric .big{font-size:27px;font-weight:850;margin:5px 0}.metric small,.muted{color:var(--muted)}h2{font-size:20px;margin:22px 0 12px}h3{font-size:16px;margin:8px 0}.card{background:white;border:1px solid var(--line);border-radius:21px;padding:18px;margin-bottom:13px}.accent{background:var(--sage)}.blue{background:var(--blue)}.gold{background:#faf0d9}.btn{border:0;border-radius:13px;background:var(--green);color:white;font-weight:750;padding:12px 15px}.btn.alt{background:#e7eee8;color:var(--ink)}.btn.goldbtn{background:var(--gold);color:#26392e}.btn:disabled{opacity:.45}.small{font-size:12px}.muted{font-size:13px;line-height:1.5}.tabs{position:fixed;bottom:0;left:0;right:0;z-index:5;background:white;border-top:1px solid var(--line);display:flex;justify-content:center;padding:9px 5px max(12px,env(safe-area-inset-bottom));overflow-x:auto}.tabs button{border:0;background:transparent;color:#78877e;font-size:11px;font-weight:750;min-width:66px;padding:6px 4px}.tabs button.active{color:var(--green);background:#eaf1e8;border-radius:13px}.tabs span{display:block;font-size:19px;margin-bottom:4px}.bar,.track{height:10px;border-radius:20px;background:#e8ede8;overflow:hidden;margin:9px 0}.fill{height:100%;background:#367c63;border-radius:20px}.exercise,.history{padding:12px 0;border-bottom:1px solid #edf0eb}.exercise:last-child,.history:last-child{border:0}.check{width:22px;height:22px;accent-color:#2f765a}input:not([type=checkbox]),select,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid #ccd8d0;background:white;color:#18362d;min-width:0}textarea{min-height:110px;resize:vertical}label{display:block;font-size:12px;font-weight:750;margin:12px 0 5px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.notice{padding:12px;background:#fff7df;border-radius:12px;font-size:12px;line-height:1.5}.timer{font-size:36px;font-weight:900;text-align:center;padding:10px}.chip{display:inline-block;background:#eaf0e8;border-radius:50px;padding:5px 9px;font-size:11px;font-weight:750;margin:3px}.weekgrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}.day{border:1px solid #dce6dc;border-radius:13px;padding:9px 3px;text-align:center;background:white;font-size:11px}.day strong{display:block;font-size:15px;margin:5px}.day.on{background:#dbeadb;border-color:#80b28e}.empty{text-align:center;padding:25px;color:#6b8176}details{border-top:1px solid #edf0eb;margin-top:10px;padding-top:10px}summary{cursor:pointer;font-size:12px;color:#28634c;font-weight:700}@media(min-width:700px){.metricgrid{grid-template-columns:repeat(4,1fr)}.brand{font-size:30px}.hero h1{font-size:36px}}
-</style></head><body><header><div class="top"><div class="headrow"><div><div class="eyebrow">THE TRAINING CLUB</div><div class="brand">PACESETTER<span style="color:#e6c37e">.</span></div><div class="tagline">Train with purpose. Beat your best.</div></div><button class="pill" id="modeBtn" onclick="toggleRole()">🏃 Athlete</button></div></div></header><main id="app"></main><nav class="tabs" id="nav"></nav><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script><script>
+:root{--bg:#f6f4ee;--ink:#17362f;--green:#123b32;--sage:#dce9d9;--gold:#e3ba6c;--blue:#e8f1f4;--muted:#70847c;--line:#dfe6df}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+header{background:#102f28;color:white;padding:25px 20px 26px;border-radius:0 0 30px 30px}
+main{max-width:920px;margin:auto;padding:18px 16px 110px}
+.top{max-width:920px;margin:auto}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:2px;color:#d9c08a}
+.brand{font-weight:900;font-size:25px;letter-spacing:1px;margin:5px 0}
+.tagline{color:#b7d0c5;font-size:13px}
+.headrow,.flex{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.row{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.pill{background:#2d5549;border:1px solid #547469;color:#f6f4ee;padding:8px 12px;border-radius:50px;font-size:12px}
+.hero{background:linear-gradient(130deg,#1b4a3c,#16352f);border-radius:24px;color:white;padding:22px;margin-bottom:16px}
+.hero h1{margin:8px 0;font-size:27px;line-height:1.15}
+.hero p{color:#d5e7db;font-size:13px}
+.metricgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.metric{background:white;border:1px solid var(--line);padding:17px;border-radius:19px;min-width:0}
+.metric .big{font-size:27px;font-weight:850;margin:5px 0}
+.metric small,.muted{color:var(--muted)}
+h2{font-size:20px;margin:22px 0 12px}
+h3{font-size:16px;margin:8px 0}
+.card{background:white;border:1px solid var(--line);border-radius:21px;padding:18px;margin-bottom:13px}
+.accent{background:var(--sage)}
+.blue{background:var(--blue)}
+.gold{background:#faf0d9}
+.btn{border:0;border-radius:13px;background:var(--green);color:white;font-weight:750;padding:12px 15px}
+.btn.alt{background:#e7eee8;color:var(--ink)}
+.btn.goldbtn{background:var(--gold);color:#26392e}
+.btn:disabled{opacity:.45}
+.small{font-size:12px}
+.muted{font-size:13px;line-height:1.5}
+.tabs{position:fixed;bottom:0;left:0;right:0;z-index:5;background:white;border-top:1px solid var(--line);display:flex;justify-content:center;padding:9px 5px max(12px,env(safe-area-inset-bottom));overflow-x:auto}
+.tabs button{border:0;background:transparent;color:#78877e;font-size:11px;font-weight:750;min-width:66px;padding:6px 4px}
+.tabs button.active{color:var(--green);background:#eaf1e8;border-radius:13px}
+.tabs span{display:block;font-size:19px;margin-bottom:4px}
+.bar,.track{height:10px;border-radius:20px;background:#e8ede8;overflow:hidden;margin:9px 0}
+.fill{height:100%;background:#367c63;border-radius:20px}
+.exercise,.history{padding:12px 0;border-bottom:1px solid #edf0eb}
+.exercise:last-child,.history:last-child{border:0}
+.check{width:22px;height:22px;accent-color:#2f765a}
+input:not([type=checkbox]),select,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid #ccd8d0;background:white;color:#18362d;min-width:0}
+textarea{min-height:110px;resize:vertical}
+label{display:block;font-size:12px;font-weight:750;margin:12px 0 5px}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.notice{padding:12px;background:#fff7df;border-radius:12px;font-size:12px;line-height:1.5}
+.timer{font-size:36px;font-weight:900;text-align:center;padding:10px}
+.chip{display:inline-block;background:#eaf0e8;border-radius:50px;padding:5px 9px;font-size:11px;font-weight:750;margin:3px}
+.weekgrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.day{border:1px solid #dce6dc;border-radius:13px;padding:9px 3px;text-align:center;background:white;font-size:11px}
+.day strong{display:block;font-size:15px;margin:5px}
+.day.on{background:#dbeadb;border-color:#80b28e}
+.empty{text-align:center;padding:25px;color:#6b8176}
+details{border-top:1px solid #edf0eb;margin-top:10px;padding-top:10px}
+summary{cursor:pointer;font-size:12px;color:#28634c;font-weight:700}
+@media(min-width:700px){
+.metricgrid{grid-template-columns:repeat(4,1fr)}
+.brand{font-size:30px}
+.hero h1{font-size:36px}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="top">
+<div class="headrow">
+<div>
+<div class="eyebrow">THE TRAINING CLUB</div>
+<div class="brand">PACESETTER<span style="color:#e6c37e">.</span></div>
+<div class="tagline">Train with purpose. Beat your best.</div>
+</div>
+<button class="pill" id="modeBtn" onclick="toggleRole()">🏃 Athlete</button>
+</div>
+</div>
+</header>
+<main id="app"></main>
+<nav class="tabs" id="nav"></nav>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
 'use strict';
-// Public browser credentials only. Never put a secret/service-role key in this file.
+
+// Public browser credentials only.
 const SUPABASE_URL='https://ipxmbejguywfgdmwtych.supabase.co';
 const SUPABASE_KEY='sb_publishable_lZSKblniWvyHaS6XunSwYQ_Aflc2rlA';
+
 const KEY='pacesetter-v5',AUTH_STORAGE='pacesetter-auth';
 const DAY=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const AGE_BANDS=['Under 25','25-29','30-34','35-39','40-44','45-49','50-54','55-59','60+'];
-const MAX_POINTS={push:[67,63,60,56,52,49,45,42,38],sit:[58,56,54,52,50,48,46,44,42],run:[805,815,822,836,845,870,909,928,1018],pacer:[87,85,84,82,81,77,71,69,65]};
-const TRAINING_DAYS=[{theme:'Upper-body strength + push-up practice',kind:'strength'},{theme:'Running · speed and form',kind:'run'},{theme:'Lower-body strength + stability',kind:'strength'},{theme:'Running · aerobic endurance',kind:'run'},{theme:'Core + sit-up technique',kind:'strength'},{theme:'Running · easy distance',kind:'run'}];
-const INITIAL={name:'Athlete',coachName:'Coach',testDate:'',birthday:'1999-12-04',testHistory:[],runGoal:1020,focus:'run',ageBand:'auto',baseline:{push:48,sit:56,run:1200,pacer:0},scores:[],workouts:{},fatigue:{},water:{},juice:{},waterGoalMl:2500,role:'athlete',tab:'home',created:new Date().toISOString().slice(0,10),coachNotes:'',session:{},sync:{url:'',key:'',email:'',linked:false},coachLink:''};
-function merge(a,b){if(!b||typeof b!=='object')return a;for(const k of Object.keys(b)){if(['__proto__','constructor','prototype'].includes(k))continue;if(b[k]&&typeof b[k]==='object'&&!Array.isArray(b[k])&&a[k]&&typeof a[k]==='object'&&!Array.isArray(a[k]))a[k]=merge(a[k],b[k]);else a[k]=b[k]}return a}
+
+const MAX_POINTS={
+push:[67,63,60,56,52,49,45,42,38],
+sit:[58,56,54,52,50,48,46,44,42],
+run:[805,815,822,836,845,870,909,928,1018],
+pacer:[87,85,84,82,81,77,71,69,65]
+};
+
+const TRAINING_DAYS=[
+{theme:'Upper-body strength + push-up practice',kind:'strength'},
+{theme:'Running · speed and form',kind:'run'},
+{theme:'Lower-body strength + stability',kind:'strength'},
+{theme:'Running · aerobic endurance',kind:'run'},
+{theme:'Core + sit-up technique',kind:'strength'},
+{theme:'Running · easy distance',kind:'run'}
+];
+
+const INITIAL={
+name:'Athlete',
+coachName:'Coach',
+testDate:'',
+birthday:'1999-12-04',
+testHistory:[],
+runGoal:1020,
+focus:'run',
+ageBand:'auto',
+baseline:{push:48,sit:56,run:1200,pacer:0},
+scores:[],
+workouts:{},
+fatigue:{},
+water:{},
+juice:{},
+waterGoalMl:2500,
+role:'athlete',
+tab:'home',
+created:new Date().toISOString().slice(0,10),
+coachNotes:'',
+session:{},
+sync:{url:'',key:'',email:'',linked:false},
+coachLink:''
+};
+
+function merge(a,b){
+if(!b||typeof b!=='object')return a;
+for(const k of Object.keys(b)){
+if(['__proto__','constructor','prototype'].includes(k))continue;
+if(b[k]&&typeof b[k]==='object'&&!Array.isArray(b[k])&&a[k]&&typeof a[k]==='object'&&!Array.isArray(a[k]))
+a[k]=merge(a[k],b[k]);
+else a[k]=b[k];
+}
+return a;
+}
+
 const fresh=()=>structuredClone(INITIAL);
-function load(){try{return merge(fresh(),JSON.parse(localStorage.getItem(KEY)||'{}'))}catch{return fresh()}}
-let loveNotes=[],loveError="",loveExpanded=false,loveBusy=false;
-let state=load(),client=null,sessionUser=null,cloudReady=false,athleteData=null,connectedAthleteId=null,selectedWeek=null,timerInterval=null,timerLeft=0,timerRunning=false,syncPending=false,waterUndo=null,accountReady=false;
-function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){console.warn(e)}}
-function el(id){return document.getElementById(id)}
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function n(v){return Math.max(0,Number(v)||0)}
-function mm(s){s=Math.max(0,Number(s)||0);return Math.floor(s/60)+':'+String(Math.round(s%60)).padStart(2,'0')}
-function parseTime(s){if(!/^\d{1,3}:\d{2}$/.test(s))return null;let [m,z]=s.split(':').map(Number);return z<60?m*60+z:null}
-function today(){return new Date().toLocaleDateString('en-CA')}
-function dayDiff(a,b){return Math.round((new Date(a+'T12:00:00')-new Date(b+'T12:00:00'))/86400000)}
-function trainingWeek(d=state){return Math.max(1,Math.floor(dayDiff(today(),d.created||today())/7)+1)}
-function daysLeft(d=state){return d.testDate?dayDiff(d.testDate,today()):null}
-function status(d=state){let x=daysLeft(d);return x!==null&&x<=7?'taper':x!==null&&x<=14?'peak':'build'}
-function latest(d=state){return d.scores?.[0]||{...d.baseline,date:d.created}}
-function progress(v,g,inverse=false){return Math.max(0,Math.min(100,Math.round((inverse?g/Math.max(1,v):v/g)*100)))}
-function ageGoals(d=state){let date=new Date((d.testDate||today())+'T12:00:00'),birth=new Date((d.birthday||'1999-12-04')+'T12:00:00');let age=date.getFullYear()-birth.getFullYear();if(date.getMonth()<birth.getMonth()||(date.getMonth()===birth.getMonth()&&date.getDate()<birth.getDate()))age--;let band=d.ageBand==='auto'?(age<25?'Under 25':age>=60?'60+':AGE_BANDS[Math.min(7,Math.floor((age-25)/5))+1]):d.ageBand;let i=Math.max(0,AGE_BANDS.indexOf(band));return {push:MAX_POINTS.push[i],sit:MAX_POINTS.sit[i],run:MAX_POINTS.run[i],pacer:MAX_POINTS.pacer[i]}}
-function readiness(d=state){let s=latest(d),g=ageGoals(d);return [{name:'Push-ups',value:s.push,target:g.push,pct:progress(s.push,g.push)},{name:'Sit-ups',value:s.sit,target:g.sit,pct:progress(s.sit,g.sit)},{name:'2-mile run',value:mm(s.run),target:mm(d.runGoal||1020),pct:progress(s.run,d.runGoal||1020,true)},{name:'PACER',value:s.pacer,target:g.pacer,pct:progress(s.pacer,g.pacer)}]}
-function metric(label,value,detail){return `<div class="metric"><small>${esc(label)}</small><div class="big">${esc(value)}</div><small>${esc(detail)}</small></div>`}
-function readinessView(d){return `<div class="card">${readiness(d).map(x=>`<div style="margin-bottom:17px"><div class="flex"><b>${esc(x.name)}</b><span class="small">${esc(x.value)} / ${esc(x.target)}</span></div><div class="bar"><div class="fill" style="width:${x.pct}%"></div></div></div>`).join('')}<p class="muted">Verify current official USAF standards and test technique.</p></div>`}
-function changeTab(t){state.tab=t;save();render()}
-function toggleRole(){state.role=state.role==='athlete'?'coach':'athlete';state.tab='home';save();saveAccountPrefs();render();if(cloudReady&&state.role==='coach')refreshCoach().then(render).catch(console.warn)}
-function render(){el('modeBtn').textContent=state.role==='athlete'?'🏃 Athlete':'📋 Coach';let tabs=state.role==='athlete'?[['home','⌂','Home'],['train','▦','Train'],['scores','◫','Scores'],['water','◉','Water'],['settings','⚙','Settings']]:[['home','⌂','Coach'],['roster','◎','Athlete'],['settings','⚙','Settings']];el('nav').innerHTML=tabs.map(([id,ico,label])=>`<button class="${state.tab===id?'active':''}" onclick="changeTab('${id}')"><span>${ico}</span>${label}</button>`).join('');el('app').innerHTML=state.role==='coach'?coachView():({home:homeView,train:trainView,scores:scoresView,water:waterView,settings:settingsView}[state.tab]||homeView)()}
-const MOTIVATION=[['Consistency beats intensity when intensity cannot be sustained.','Training note'],['I can do all things through Christ which strengtheneth me.','Philippians 4:13 · KJV'],['Leah loves you. Keep going.','A note from Leah'],['But they that wait upon the LORD shall renew their strength.','Isaiah 40:31 · KJV'],['You have already proved you can pass. Now build a better performance.','Training note'],['Leah is proud of you — even on the hard days.','A note from Leah'],['Let us not be weary in well doing.','Galatians 6:9 · KJV'],['One steady mile at a time.','Training note']];
-function motivationCard(){let m=MOTIVATION[Math.floor(Date.now()/86400000)%MOTIVATION.length];return `<div class="card gold"><div class="eyebrow" style="color:#816233">TODAY'S ENCOURAGEMENT</div><h3>“${esc(m[0])}”</h3><div class="muted">${esc(m[1])}</div></div>`}
-function birthdayCard(d=state){let b=d.birthday||'1999-12-04',now=new Date();return now.getMonth()+1===Number(b.slice(5,7))&&now.getDate()===Number(b.slice(8,10))?'<div class="card gold"><h2>Happy Birthday! 🎂</h2><p>Another year of becoming stronger, wiser, and more you. I’m proud of you. Leah loves you, always. ❤️</p></div>':''}
-function syncNotice(){return `<div class="card ${cloudReady?'blue':'gold'}"><b>${cloudReady?'☁ Cloud connected':'Local mode'}</b><p class="muted">${cloudReady?'Signed in. Your data can be synchronized.':'Sign in under Settings to save your data online.'}</p><button class="btn alt" onclick="syncNow()">Sync now</button></div>`}
-function homeView(){let left=daysLeft(),idx=(new Date().getDay()+6)%7,plan=idx===6?null:TRAINING_DAYS[idx],done=Object.values(state.workouts||{}).filter(x=>x.done).length;return `${birthdayCard()}${loveNotesView()}${motivationCard()}${waterMini()}<div class="hero"><div class="eyebrow">YOUR NEXT PERSONAL BEST</div><h1>Stronger. Faster.<br>Better than last time.</h1><p>Welcome back, ${esc(state.name)}. ${left===null?'Set your test date to activate your countdown.':left>=0?left+' days until test day.':'Set a new PT test date.'}</p><button class="btn goldbtn" onclick="changeTab('${left===null?'settings':'train'}')">${left===null?'Set test date':'Open today’s workout'} →</button></div><div class="metricgrid">${metric('TEST COUNTDOWN',left===null?'—':Math.max(0,left),'days remaining')}${metric('TRAINING WEEK',trainingWeek(),status()+' phase')}${metric('WORKOUTS DONE',done,'logged sessions')}${metric('RUN GOAL',mm(state.runGoal),'2-mile goal')}</div><h2>Today's game plan</h2><div class="card accent"><h3>${plan?esc(plan.theme):'Sunday · Rest day'}</h3><p class="muted">${plan?'Choose Light, Moderate, or Heavy in the Train tab and complete your cool-down.':'Recover, hydrate, and enjoy your rest day.'}</p>${plan?'<button class="btn" onclick="changeTab(\'train\')">View workout →</button>':''}</div><h2>PT score targets</h2>${readinessView(state)}${syncNotice()}`}
-function workout(week,idx){let id=week+'-'+idx,level=state.workouts[id]?.intensity||'light',plan=TRAINING_DAYS[idx],sets=level==='heavy'?3:2,reps=level==='light'?'6–8':level==='moderate'?'8–10':'8–12',runMinutes=level==='light'?18:level==='moderate'?26:34,duration=runMinutes+Math.min(8,Math.max(0,Math.floor((week-1)/2)*2)),reduced=status()==='taper'||(state.fatigue[(week-1)+'-'+idx]||0)>=4;let items=[],runInfo='',warmup='',cooldown=[];if(reduced)duration=Math.round(duration*.7);if(idx===0)items=[['Push-ups',sets+' × '+reps+', stop 2–3 reps before failure','75 sec'],['Dumbbell bench press',sets+' × '+reps,'75 sec'],['Single-arm dumbbell row',sets+' × '+reps+' each side','60 sec']];if(idx===2)items=[['Goblet squat',sets+' × '+reps,'75 sec'],['Romanian deadlift',sets+' × '+reps,'75 sec'],['Reverse lunge',sets+' × 6–8 each leg','60 sec']];if(idx===4)items=[['Test-form sit-ups',sets+' × 8–12','75 sec'],['Dead bugs',sets+' × 8 each side','45 sec'],['Side plank',sets+' × 20–30 sec each side','45 sec']];if(level==='heavy'){if(idx===0)items.push(['Overhead press','2 × 8','75 sec']);if(idx===2)items.push(['Calf raises','2 × 12–15','45 sec']);if(idx===4)items.push(['Bird dogs','2 × 8 each side','45 sec'])}if(reduced&&plan.kind==='strength')items=items.slice(0,2);if(plan.kind==='run'){if(level==='light')runInfo=duration+' min easy conversational run/walk. Walk breaks whenever needed.';else if(idx===1)runInfo=level==='moderate'?`~${duration} min: 8 min easy, 4 × 1 min controlled faster running with 2 min easy recovery, then easy running.`:`~${duration} min: 10 min easy, 5 × 1 min strong but controlled running with 2 min easy recovery, then easy running. Never sprint all-out.`;else if(idx===3)runInfo=level==='moderate'?`~${duration} min: 8 min easy, 10 min comfortably steady, remainder easy.`:`~${duration} min: 10 min easy, 2 × 6 min comfortably hard with 3 min easy between, then easy running.`;else runInfo=duration+' min of conversational running or run/walk.';if(reduced)runInfo='Recovery adjustment: '+runInfo+' Stay easy.';warmup='5–10 min brisk walking and easy jogging, gradually building pace.';cooldown=[['Slow walk',level==='light'?180:level==='moderate'?300:420],['Gentle calf stretch',60],['Gentle quad and hip-flexor stretch',60],['Slow breathing',60]]}else{warmup='5–8 min easy walking or marching, gentle mobility, then one light practice set.';cooldown=[['Easy walk',level==='light'?120:level==='moderate'?180:300],['Gentle mobility',level==='light'?90:120],['Slow breathing',60]]}return {...plan,id,week,idx,level,items,runInfo,warmup,cooldown,reduced}}
-const DEMOS={'Push-ups':'Hands under shoulders, keep torso rigid, lower to test-required depth, and press up.','Dumbbell bench press':'Keep shoulder blades stable and press smoothly.','Single-arm dumbbell row':'Support your torso and pull your elbow toward your hip.','Overhead press':'Brace your abdomen and press without arching your back.','Goblet squat':'Hold the weight at your chest and squat with heels down.','Romanian deadlift':'Hinge at the hips with a neutral spine.','Reverse lunge':'Step backward and lower with control.','Calf raises':'Rise onto toes, pause, then lower slowly.','Test-form sit-ups':'Practice the exact technique required by the current PT test.','Dead bugs':'Keep your back gently supported while extending opposite limbs.','Side plank':'Keep shoulders and hips aligned.','Bird dogs':'Extend opposite arm and leg without rotating your hips.'};
-function trainView(){let wk=selectedWeek||trainingWeek();return `<div class="flex"><h2>Training plan</h2><span class="chip">Week ${wk}</span></div><div class="card"><div class="flex"><button class="btn alt" onclick="selectedWeek=Math.max(1,${wk}-1);render()">← Prior</button><b>Week ${wk}</b><button class="btn alt" onclick="selectedWeek=${wk}+1;render()">Next →</button></div><p class="muted">Run and strength days are separate. Choose Light, Moderate, or Heavy. Cool down after every workout. Sunday is rest.</p><div class="weekgrid">${DAY.map((d,i)=>`<button class="day ${state.workouts[wk+'-'+i]?.done?'on':''}" onclick="document.getElementById('work${i}').scrollIntoView({behavior:'smooth'})">${d.slice(0,3)}<strong>${state.workouts[wk+'-'+i]?.done?'✓':i+1}</strong></button>`).join('')}</div></div>${DAY.map((d,i)=>workCard(wk,i)).join('')}<div class="card gold"><b>Sunday · Rest day</b><p class="muted">Recovery is part of the plan.</p></div><div class="notice">Training is a general template, not medical supervision. Progress gradually and stop for chest pain, dizziness, unusual breathlessness, or sharp pain.</div>`}
-function workCard(wk,i){let id=wk+'-'+i,r=state.workouts[id]||{},w=workout(wk,i),checked=r.checked||{},total=w.kind==='run'?1:w.items.length,completed=Object.values(checked).filter(Boolean).length,seconds=w.cooldown.reduce((a,x)=>a+x[1],0);return `<div class="card" id="work${i}"><div class="flex"><div><span class="chip">${DAY[i]}</span><span class="chip">${w.kind==='run'?'Running only':'Strength only'}</span><h3>${esc(w.theme)}</h3></div><span class="chip">${r.done?'✓ Done':r.skipped?'↷ Skipped':completed+'/'+total}</span></div><div class="card gold" style="margin-top:12px"><b>How hard are we going today?</b><p class="muted">Changing intensity resets this session’s checkmarks.</p><div class="row">${['light','moderate','heavy'].map(x=>`<button class="btn ${w.level===x?'':'alt'}" onclick="setIntensity('${id}','${x}')">${x==='light'?'🌿 Light':x==='moderate'?'⚡ Moderate':'🔥 Heavy'}</button>`).join('')}</div><p class="muted">${w.level==='light'?'Easy · RPE 3–4/10':w.level==='moderate'?'Steady · RPE 5–6/10':'Challenging · RPE 7–8/10'}${w.reduced?' · Recovery adjustment active':''}</p></div><div class="card blue"><b>Warm-up first</b><p class="muted">${esc(w.warmup)}</p></div>${w.kind==='run'?`<div class="card blue"><b>Running session — no lifting today</b><p class="muted">${esc(w.runInfo)}</p><label class="row"><input class="check" type="checkbox" ${checked.run?'checked':''} onchange="mark('${id}','run',this.checked)"> Completed run</label></div>`:`<div class="card blue"><b>Strength session — no running today</b><p class="muted">Use controlled technique and leave reps in reserve.</p></div>${w.items.map((x,j)=>`<div class="exercise"><div class="row" style="flex-wrap:nowrap"><input class="check" type="checkbox" ${checked[j]?'checked':''} onchange="mark('${id}','${j}',this.checked)"><div style="flex:1"><b>${esc(x[0])}</b><div class="muted">${esc(x[1])} · Rest ${esc(x[2])}</div></div><button class="btn alt" onclick="startTimer(${parseInt(x[2])||60})">⏱</button></div><details><summary>How to do it</summary><p class="muted">${esc(DEMOS[x[0]]||'Move with control and stop if form breaks down.')}</p></details></div>`).join('')}`}<div class="card accent" style="margin-top:15px"><div class="eyebrow" style="color:#557461">AFTER YOUR SESSION</div><h3>Cool down · ${Math.ceil(seconds/60)} minutes</h3>${w.cooldown.map(([name,s])=>`<div class="history"><b>${esc(name)}</b><span class="muted"> · ${s<60?s+' sec':Math.round(s/60)+' min'}</span></div>`).join('')}<p><button class="btn alt" onclick="startTimer(${seconds})">⏱ Start cool-down timer</button></p><label class="row"><input class="check" type="checkbox" ${r.cooldownDone?'checked':''} onchange="markCooldown('${id}',this.checked)"> I finished my cool-down</label></div><label>How hard did today feel? (1–5)</label><select onchange="setFatigue('${id}',this.value)"><option value="0">Choose after training</option>${[1,2,3,4,5].map(x=>`<option value="${x}" ${state.fatigue[id]==x?'selected':''}>${x} / 5</option>`).join('')}</select><p><button class="btn alt" onclick="skipWorkout('${id}')">${r.skipped?'Undo skipped workout':'Skip workout 🙃'}</button></p><button class="btn" onclick="finish('${id}')">${r.done?'Update completed workout':'Finish & save workout'}</button></div>`}
-function setIntensity(id,value){let r=state.workouts[id]||{};r.intensity=value;r.checked={};r.cooldownDone=false;r.done=false;state.workouts[id]=r;save();queueSync();render()}
-function mark(id,k,v){let r=state.workouts[id]||{checked:{}};r.checked=r.checked||{};r.checked[k]=v;state.workouts[id]=r;save();queueSync()}
-function markCooldown(id,v){let r=state.workouts[id]||{checked:{}};r.cooldownDone=v;state.workouts[id]=r;save();queueSync()}
-function setFatigue(id,v){state.fatigue[id]=n(v);save();queueSync()}
-function skipWorkout(id){let r=state.workouts[id]||{checked:{}};if(r.skipped){r.skipped=false;delete r.skipReason}else{let reason=prompt('Why skip today? Busy, sick, injured, exhausted, or other?','busy');if(reason===null)return;r.skipped=true;r.done=false;r.skipReason=reason;r.skippedAt=new Date().toISOString();alert(/sick|injur|exhaust|pain/i.test(reason)?'Recovery matters. Rest and come back when you feel better.':'Your running shoes are filing a missing-person report. Leah loves you anyway! 💚')}state.workouts[id]=r;save();queueSync();render()}
-function finish(id){let r=state.workouts[id]||{checked:{}};if(!r.cooldownDone){alert('Complete your cool-down before saving.');return}r.done=true;r.skipped=false;r.finishedAt=new Date().toISOString();r.completedIntensity=r.intensity||'light';state.workouts[id]=r;save();queueSync();render()}
-function startTimer(s){clearInterval(timerInterval);timerLeft=s;timerRunning=false;el('timerOverlay')?.remove();let overlay=document.createElement('div');overlay.id='timerOverlay';overlay.style='position:fixed;inset:0;background:#0c2925e8;z-index:20;display:flex;align-items:center;justify-content:center;padding:20px';overlay.innerHTML=`<div class="card" style="width:min(380px,100%);text-align:center"><div class="eyebrow" style="color:#507b61">TRAINING TIMER</div><div class="timer" id="timeDisplay">${mm(s)}</div><div class="row" style="justify-content:center"><button class="btn" id="timerToggle" onclick="toggleTimer()">Start</button><button class="btn alt" onclick="resetTimer(${s})">Reset</button><button class="btn alt" onclick="closeTimer()">Close</button></div></div>`;document.body.appendChild(overlay)}
-function toggleTimer(){timerRunning=!timerRunning;el('timerToggle').textContent=timerRunning?'Pause':'Resume';clearInterval(timerInterval);if(timerRunning)timerInterval=setInterval(()=>{timerLeft=Math.max(0,timerLeft-1);if(el('timeDisplay'))el('timeDisplay').textContent=mm(timerLeft);if(!timerLeft){clearInterval(timerInterval);timerRunning=false;if(el('timerToggle'))el('timerToggle').textContent='Done ✓';if(navigator.vibrate)navigator.vibrate([150,100,150])}},1000)}
-function resetTimer(s){clearInterval(timerInterval);timerLeft=s;timerRunning=false;el('timeDisplay').textContent=mm(s);el('timerToggle').textContent='Start'}
-function closeTimer(){clearInterval(timerInterval);el('timerOverlay')?.remove()}
-function scoresView(){return `<h2>Performance lab</h2><div class="card accent"><b>Beat the standard. Then beat your best.</b><p class="muted">Log your actual PT performance.</p><div class="formgrid"><div><label>Push-ups / 60 sec</label><input id="scorePush" type="number" min="0"></div><div><label>Sit-ups / 60 sec</label><input id="scoreSit" type="number" min="0"></div><div><label>2-mile (MM:SS)</label><input id="scoreRun" placeholder="19:15"></div><div><label>PACER shuttles</label><input id="scorePacer" type="number" min="0"></div></div><label>Test date</label><input id="scoreDate" type="date" value="${today()}"><p><button class="btn" onclick="addScore()">Save performance</button></p></div><h2>Current vs standard</h2>${readinessView(state)}<h2>Progress history</h2><div class="card">${state.scores.length?state.scores.slice(0,15).map(s=>`<div class="history"><b>${esc(s.date)}</b><div class="muted">${s.push} push-ups · ${s.sit} sit-ups · ${mm(s.run)} run · ${s.pacer} shuttles</div></div>`).join(''):'<div class="empty">No test results yet.</div>'}</div><button class="btn alt" onclick="exportCSV()">Export progress CSV ↓</button>`}
-function addScore(){let prev=latest(),r=el('scoreRun').value.trim(),seconds=r?parseTime(r):prev.run;if(seconds===null||seconds<60||seconds>7200){alert('Enter a valid run time such as 18:45.');return}let s={date:el('scoreDate').value||today(),push:el('scorePush').value===''?prev.push:n(el('scorePush').value),sit:el('scoreSit').value===''?prev.sit:n(el('scoreSit').value),run:seconds,pacer:el('scorePacer').value===''?prev.pacer:n(el('scorePacer').value)};state.scores.unshift(s);state.scores.sort((a,b)=>b.date.localeCompare(a.date));save();queueSync();render()}
-function exportCSV(){let rows=['date,pushups,situps,run_seconds,pacer',...state.scores.map(s=>[s.date,s.push,s.sit,s.run,s.pacer].join(','))],url=URL.createObjectURL(new Blob([rows.join('\n')],{type:'text/csv'})),a=document.createElement('a');a.href=url;a.download='pacesetter-scores.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),2000)}
-function settingsView(){return `<h2>Make it yours</h2><div class="card"><label>Athlete name</label><input id="name" value="${esc(state.name)}"><label>USAF age bracket</label><select id="ageBand"><option value="auto" ${state.ageBand==='auto'?'selected':''}>Automatic from birthday</option>${AGE_BANDS.map(x=>`<option ${state.ageBand===x?'selected':''}>${x}</option>`).join('')}</select><label>Birthday</label><input id="birthday" type="date" value="${esc(state.birthday)}"><label>Next PT test date</label><input id="testDate" type="date" value="${esc(state.testDate)}"><label>2-mile stretch goal (MM:SS)</label><input id="runGoal" value="${mm(state.runGoal)}"><label>Current 2-mile baseline (MM:SS)</label><input id="baselineRun" value="${mm(state.baseline.run)}"><p class="muted">Starting performance values are estimates. Verify the baseline and official USAF rules.</p><button class="btn" onclick="saveSettings()">Save goals</button></div><div class="card"><h3>PT test history</h3><button class="btn alt" onclick="archiveTest()">Archive current PT test</button>${(state.testHistory||[]).map(t=>`<div class="history"><b>${esc(t.date)}</b><div class="muted">${t.push} push-ups · ${t.sit} sit-ups · ${mm(t.run)} run</div></div>`).join('')}</div>${cloudSettings()}`}
-function saveSettings(){let goal=parseTime(el('runGoal').value),base=parseTime(el('baselineRun').value);if(!goal||!base){alert('Enter times as MM:SS');return}state.name=el('name').value.trim()||'Athlete';state.ageBand=el('ageBand').value;state.birthday=el('birthday').value||'1999-12-04';state.testDate=el('testDate').value;state.runGoal=goal;state.baseline.run=base;save();queueSync();render()}
-function archiveTest(){if(!state.testDate){alert('Set a PT test date first.');return}if((state.testHistory||[]).some(x=>x.date===state.testDate)){alert('This test is already archived.');return}if(!confirm('Archive this PT test using your latest scores?'))return;state.testHistory=state.testHistory||[];state.testHistory.unshift({...latest(),date:state.testDate});state.testDate='';save();queueSync();render()}
-function waterToday(d=state){return Math.max(0,Number(d.water?.[today()]||0))}function juiceToday(d=state){return Math.max(0,Number(d.juice?.[today()]||0))}function waterGoal(d=state){return Math.max(500,Math.min(6000,Number(d.waterGoalMl)||2500))}function challengeWater(d=state){return Math.max(0,waterToday(d)-juiceToday(d))}function waterPct(d=state){return Math.min(100,Math.round(100*challengeWater(d)/waterGoal(d)))}function oz(ml){return (Number(ml)/29.5735295625).toFixed(1)}
-function waterMini(){return `<div class="card blue"><div class="flex"><div><b>💧 Today's water challenge</b><p class="muted">${oz(challengeWater())} oz credit / ${oz(waterGoal())} oz goal · ${waterPct()}%</p><p class="muted">Actually drank: ${oz(waterToday())} oz water · ${oz(juiceToday())} oz juice.</p></div><button class="btn alt" onclick="changeTab('water')">Track drinks →</button></div><div class="track"><div class="fill" style="width:${waterPct()}%"></div></div></div>`}
-function waterView(){let dates=[...new Set([...Object.keys(state.water||{}),...Object.keys(state.juice||{})])].sort().reverse().slice(0,7);return `<h2>💧 Hydration station</h2><div class="hero"><div class="eyebrow">FUEL THE WORK</div><h1>${oz(challengeWater())} oz</h1><p>Water challenge credit · ${waterPct()}% of daily goal</p><p>Actual intake: ${oz(waterToday())} oz water · ${oz(juiceToday())} oz juice</p></div><div class="card"><h3>Quick add</h3><div class="formgrid"><button class="btn alt" onclick="addWaterOz(32)">💧 Everyday bottle · +32 oz</button><button class="btn alt" onclick="addWaterOz(16)">💧 Water bottle · +16 oz</button><button class="btn alt" onclick="addWaterOz(16)">🥤 Solo cup water · +16 oz</button><button class="btn alt" onclick="addJuiceOz(16)">🧃 Juice · −16 oz game credit</button></div><label>Custom water amount (oz)</label><div class="flex"><input id="customWater" type="number" min="0.5" max="67" step="0.5"><button class="btn" onclick="addCustomWater()">Add</button></div><p><button class="btn alt" onclick="undoWater()">Undo last drink</button></p><p class="muted">The juice penalty is only a game. Juice still counts as fluid consumed.</p></div><div class="card"><h3>Daily challenge goal</h3><label>Water goal (oz)</label><input id="waterGoalInput" type="number" min="17" max="200" value="${Math.round(waterGoal()/29.5735295625)}"><p><button class="btn" onclick="setWaterGoal()">Save goal</button></p><div class="notice">This is an editable game target, not a medical requirement. Avoid forcing extra water to clear the game penalty; overhydration can be dangerous.</div></div><div class="card"><h3>Last 7 logged days</h3>${dates.length?dates.map(d=>`<div class="history"><b>${esc(d)}</b><p class="muted">${oz(state.water?.[d]||0)} oz water · ${oz(state.juice?.[d]||0)} oz juice</p></div>`).join(''):'<p class="muted">No drinks logged yet.</p>'}</div>`}
-function addWaterOz(amount){let ml=Math.round(Number(amount)*29.5735295625);if(!Number.isFinite(ml)||ml<1||ml>2000){alert('Invalid amount.');return}state.water=state.water||{};waterUndo={date:today(),type:'water',previous:waterToday()};state.water[today()]=waterToday()+ml;save();queueSync();render()}
-function addJuiceOz(amount){let ml=Math.round(Number(amount)*29.5735295625);state.juice=state.juice||{};waterUndo={date:today(),type:'juice',previous:juiceToday()};state.juice[today()]=juiceToday()+ml;save();queueSync();render();alert('JUICE?! Your girlfriend made you a whole training app and you chose juice? 😂')}
-function addCustomWater(){addWaterOz(el('customWater').value)}
-function undoWater(){if(!waterUndo||waterUndo.date!==today()){alert('No recent drink to undo.');return}let bucket=waterUndo.type==='juice'?'juice':'water';state[bucket][today()]=waterUndo.previous;waterUndo=null;save();queueSync();render()}
-function setWaterGoal(){let x=Number(el('waterGoalInput').value);if(!Number.isFinite(x)||x<17||x>200){alert('Choose a goal between 17 and 200 oz.');return}state.waterGoalMl=Math.round(x*29.5735295625);save();queueSync();render()}
-// Supabase URL/key are built into the app. Users only need their own email/password.
-function initCloud(){if(!window.supabase)return false;if(client)return true;try{client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storage:window.localStorage,storageKey:AUTH_STORAGE}});return true}catch(e){console.error(e);return false}}
-function payload(){let {sync,role,tab,coachLink,coachNotes,...data}=state;return data}
-function prefsKey(){return sessionUser?'pacesetter-prefs-'+sessionUser.id:null}
-function saveAccountPrefs(){let k=prefsKey();if(k)localStorage.setItem(k,JSON.stringify({role:state.role,coachLink:state.coachLink,coachNotes:state.coachNotes}))}
-function loadAccountPrefs(){let k=prefsKey();if(!k)return;try{let p=JSON.parse(localStorage.getItem(k)||'{}');if(p.role)state.role=p.role;if(typeof p.coachLink==='string')state.coachLink=p.coachLink;if(typeof p.coachNotes==='string')state.coachNotes=p.coachNotes}catch(e){console.warn(e)}}
-function legacyAuthKey(){return 'sb-'+new URL(SUPABASE_URL).hostname.split('.')[0]+'-auth-token'}
-function tryMigrateSession(){// Supabase's previous default storage key may hold an existing session.
- try{if(!localStorage.getItem(AUTH_STORAGE)){let old=localStorage.getItem(legacyAuthKey());if(old)localStorage.setItem(AUTH_STORAGE,old)}}catch(e){console.warn(e)} }
-async function restoreCloud(){if(!initCloud())return;try{let {data,error}=await client.auth.getSession();if(error)throw error;if(data.session)await activateSession(data.session.user);else render()}catch(e){console.warn('Restore:',e);render()}}
-async function activateSession(user){if(!user)return;let changed=sessionUser?.id!==user.id;sessionUser=user;cloudReady=true;if(changed){athleteData=null;connectedAthleteId=null;state.coachLink='';state.coachNotes='';loadAccountPrefs()}state.sync.email=user.email||'';save();if(state.role==='coach'){await loadCoachProfile();await refreshCoach()}else await loadAthleteProfile();await loadLoveNotes();render()}
-async function authCloud(mode){let email=el('cloudEmail').value.trim(),password=el('cloudPassword').value;if(!email||password.length<8){alert('Enter your email and a password of at least 8 characters.');return}if(!initCloud()){alert('Cloud library could not load. Check your connection.');return}try{let r=mode==='signup'?await client.auth.signUp({email,password}):await client.auth.signInWithPassword({email,password});if(r.error)throw r.error;if(!r.data.session){alert('Check your email for confirmation, then sign in.');return}await activateSession(r.data.user);alert('Signed in successfully!')}catch(e){alert('Sign-in failed: '+e.message)}}
-async function signOutCloud(){if(!client)return;try{saveAccountPrefs();await client.auth.signOut();sessionUser=null;cloudReady=false;athleteData=null;connectedAthleteId=null;loveNotes=[];loveError='';render();alert('Signed out.')}catch(e){alert(e.message)}}
-async function loadAthleteProfile(){if(!client||!sessionUser)return;let {data,error}=await client.from('profiles').select('data').eq('id',sessionUser.id).maybeSingle();if(error)throw error;if(data?.data){let keep={sync:state.sync,role:state.role,tab:state.tab,coachLink:state.coachLink,coachNotes:state.coachNotes};state=merge(fresh(),data.data);Object.assign(state,keep);save()}}
-async function saveAthleteProfile(){if(!client||!sessionUser||state.role!=='athlete')return;let {error}=await client.from('profiles').upsert({id:sessionUser.id,data:payload(),updated_at:new Date().toISOString()});if(error)throw error}
-async function syncNowSilent(){if(!cloudReady||state.role!=='athlete')return;try{await saveAthleteProfile()}catch(e){console.warn('Sync:',e)}}
-function queueSync(){if(!cloudReady||state.role==='coach'||syncPending)return;syncPending=true;setTimeout(async()=>{syncPending=false;await syncNowSilent()},1200)}
-async function syncNow(){if(!cloudReady||!sessionUser){alert('Sign in first.');return}try{if(state.role==='coach'){await refreshCoach();await loadLoveNotes();render();alert(athleteData?'Coach dashboard updated.':'No athlete data could be loaded. Check the connection in Settings.')}else{await saveAthleteProfile();alert('Athlete progress saved to cloud.')}}catch(e){alert('Sync failed: '+e.message)}}
-async function createInvite(){if(!cloudReady||!sessionUser){alert('Sign in as the athlete first.');return}try{let {data,error}=await client.rpc('make_invite');if(error)throw error;el('inviteResult').textContent='Share this code with your coach: '+data}catch(e){alert('Invite failed: '+e.message)}}
-async function joinAthlete(){if(!cloudReady||!sessionUser){alert('Sign in to your Coach account first.');return}let code=el('inviteCode').value.trim().toUpperCase();if(!/^[A-Z0-9]{6}$/.test(code)){alert('Enter the six-character invitation code.');return}try{let {error:joinError}=await client.rpc('join_invite',{invite_code:code});if(joinError)throw joinError;let {data,error}=await client.rpc('coach_read_athlete',{invite:code});if(error)throw error;state.coachLink=code;athleteData=data?merge(fresh(),data):null;saveAccountPrefs();save();await loadLoveNotes();render();alert('Athlete connected successfully!')}catch(e){alert('Could not link athlete: '+e.message)}}
-async function refreshCoach(){if(!client||!sessionUser)return;athleteData=null;connectedAthleteId=null;let {data:links,error:linkError}=await client.from('pacesetter_coach_access').select('athlete_id').eq('coach_id',sessionUser.id).limit(1);if(linkError)console.warn('Coach access lookup:',linkError);let athleteId=links?.[0]?.athlete_id||null;if(!athleteId&&state.coachLink){let {data:invite}=await client.from('pacesetter_invites').select('athlete_id').eq('code',state.coachLink).maybeSingle();athleteId=invite?.athlete_id||null;}connectedAthleteId=athleteId;if(athleteId){let {data:profile,error:profileError}=await client.from('profiles').select('data').eq('id',athleteId).maybeSingle();if(!profileError&&profile?.data){athleteData=merge(fresh(),profile.data);return}if(profileError)console.warn('Athlete profile RLS:',profileError)}if(state.coachLink){let {data,error}=await client.rpc('coach_read_athlete',{invite:state.coachLink});if(!error&&data){athleteData=merge(fresh(),data);return}if(error)console.warn('Coach RPC:',error)}}
-async function loadCoachProfile(){if(!client||!sessionUser)return;let {data,error}=await client.from('profiles').select('data').eq('id',sessionUser.id).maybeSingle();if(error){console.warn('Coach notes:',error);return}if(typeof data?.data?.coachNotes==='string')state.coachNotes=data.data.coachNotes;saveAccountPrefs();save()}
-async function saveCoachNote(){let note=el('coachNotes').value;state.coachNotes=note;saveAccountPrefs();save();if(!cloudReady||!sessionUser){alert('Note saved on this device. Sign in to save it to your account.');return}try{let {data,error:readError}=await client.from('profiles').select('data').eq('id',sessionUser.id).maybeSingle();if(readError)throw readError;let ownData=data?.data||{};let {error}=await client.from('profiles').upsert({id:sessionUser.id,data:{...ownData,coachNotes:note,coachName:state.coachName},updated_at:new Date().toISOString()});if(error)throw error;render();alert('Coach note saved to your account!')}catch(e){alert('Saved locally, but cloud save failed: '+e.message)}}
-function coachNoteView(){return `<h2>Coach's Notes</h2><div class="card"><label>Encouragement or training guidance</label><textarea id="coachNotes" placeholder="Keep your easy runs easy!">${esc(state.coachNotes)}</textarea><p><button class="btn" onclick="saveCoachNote()">Save coach note</button></p><p class="muted">Saved to your Coach account, separately from athlete workout data.</p></div>`}
-function coachAthleteView(){
- let d=athleteData;
- if(!d)return `<h2>◎ Athlete Overview</h2><div class="card"><h3>His training profile isn't loaded yet</h3><p class="muted">Connect his account in Settings or refresh the connection to see his progress.</p><button class="btn" onclick="syncNow()">Refresh athlete progress</button></div>`;
- let done=Object.values(d.workouts||{}).filter(x=>x.done).length;
- return `<h2>◎ Athlete Overview</h2><div class="card blue"><b>${esc(d.name||'Your athlete')}'s training</b><p class="muted">Read-only view of his synced training data. He logs workouts and scores from his own account.</p><button class="btn alt" onclick="syncNow()">↻ Refresh progress</button></div><div class="metricgrid">${metric('WORKOUTS DONE',done,'completed')}${metric('LATEST RUN',mm(latest(d).run),'2 miles')}${metric('TRAINING WEEK',trainingWeek(d),'current')}${metric('WATER TODAY',oz(waterToday(d)),'water')}</div><h2>PT performance</h2>${readinessView(d)}<h2>Recent workout history</h2><div class="card">${Object.entries(d.workouts||{}).filter(([k,v])=>v.done).sort((a,b)=>(b[1].finishedAt||'').localeCompare(a[1].finishedAt||'')).slice(0,12).map(([k,v])=>`<div class="history"><b>Week ${esc(k.split('-')[0])} · ${esc(DAY[Number(k.split('-')[1])]||'Workout')}</b><p class="muted">${esc((v.finishedAt||'').slice(0,10))} · ${esc(v.completedIntensity||v.intensity||'light')} intensity</p></div>`).join('')||'<p class="muted">No completed workouts have synced yet.</p>'}</div><h2>Hydration</h2><div class="card">${oz(waterToday(d))} oz water · ${oz(juiceToday(d))} oz juice today</div>`;
-}
-function coachView(){if(state.tab==='settings')return coachSettings();if(state.tab==='roster')return coachAthleteView();let d=athleteData;if(!d)return `${loveNotesView()}${motivationCard()}<div class="hero"><div class="eyebrow">YOUR COACH CORNER</div><h1>Lead the progress.<br>Celebrate the wins.</h1><p>${cloudReady?'Signed in to your Coach account.':'Sign in to connect your athlete.'}</p><button class="btn goldbtn" onclick="changeTab('settings')">Manage athlete connection →</button></div><div class="card gold"><h3>No athlete data loaded yet</h3><p class="muted">If already linked, tap Sync now. Otherwise enter his invitation code in Settings.</p><button class="btn" onclick="syncNow()">Sync now</button></div>${coachNoteView()}`;let done=Object.values(d.workouts||{}).filter(x=>x.done).length,left=daysLeft(d);return `${birthdayCard(d)}${loveNotesView()}${motivationCard()}<div class="hero"><div class="eyebrow">YOUR COACH CORNER</div><h1>Lead the progress.<br>Celebrate the wins.</h1><p>Training dashboard for ${esc(d.name||'your athlete')}.</p><button class="btn goldbtn" onclick="syncNow()">Refresh athlete progress →</button></div><div class="metricgrid">${metric('SESSIONS DONE',done,'recorded workouts')}${metric('RUN TIME',mm(latest(d).run),'2 miles')}${metric('TEST IN',left===null?'—':Math.max(0,left),'days')}${metric('WEEK',trainingWeek(d),status(d)+' phase')}</div><h2>Readiness snapshot</h2>${readinessView(d)}<h2>Hydration</h2><div class="card blue"><b>💧 Athlete hydration</b><p class="muted">${oz(waterToday(d))} oz water · ${oz(juiceToday(d))} oz juice</p></div><h2>Recent training</h2><div class="card">${Object.entries(d.workouts||{}).filter(([k,v])=>v.done).sort((a,b)=>(b[1].finishedAt||'').localeCompare(a[1].finishedAt||'')).slice(0,8).map(([k,v])=>`<div class="history"><b>Week ${esc(k.split('-')[0])} · ${esc(DAY[Number(k.split('-')[1])]||'Workout')}</b><div class="muted">Completed ${esc((v.finishedAt||'').slice(0,10))} · ${esc(v.completedIntensity||v.intensity||'light')} intensity · Cool-down ${v.cooldownDone?'✓':'not recorded'} · Fatigue ${d.fatigue?.[k]||'not recorded'}/5</div></div>`).join('')||'<p class="muted">No completed workouts yet.</p>'}</div>${coachNoteView()}${syncNotice()}`}
-function coachSettings(){return `<h2>Coach connection</h2><div class="card"><b>View his progress from your phone</b><p class="muted">You and your athlete have separate accounts. Both automatically use the same Supabase project.</p><p class="muted">${connectedAthleteId?'✓ Athlete connection found in Supabase.':'Connection not yet confirmed from Supabase.'}</p></div>${cloudSettings()}<div class="card"><label>Athlete invitation code</label><input id="inviteCode" placeholder="e.g. K7X2PQ" value="${esc(state.coachLink)}"><p><button class="btn" onclick="joinAthlete()">Link athlete</button></p><p><button class="btn alt" onclick="syncNow()">Refresh connection</button></p></div>`}
-function cloudSettings(){return `<div class="card"><h3>☁ PACESETTER Cloud Account</h3><p class="muted">Supabase is configured automatically. Just use your own email and password.</p><label>Your email</label><input id="cloudEmail" type="email" value="${esc(sessionUser?.email||state.sync.email||'')}" placeholder="you@example.com"><label>Password</label><input id="cloudPassword" type="password" placeholder="At least 8 characters"><div class="row" style="margin-top:13px"><button class="btn" onclick="authCloud('signup')">Create account</button><button class="btn alt" onclick="authCloud('signin')">Sign in</button><button class="btn alt" onclick="syncNow()">Sync now</button>${cloudReady?'<button class="btn alt" onclick="signOutCloud()">Sign out</button>':''}</div><p class="muted" id="cloudStatus">${cloudReady?'Signed in as '+esc(sessionUser?.email||''):'Not signed in.'}</p>${state.role==='athlete'?'<p><button class="btn alt" onclick="createInvite()">Generate coach invite code</button></p><p class="muted" id="inviteResult"></p>':''}</div>`}
 
-// LOVE NOTES — messages are stored in the protected pacesetter_love_notes table.
-// Requires the accompanying SQL setup to be run once in Supabase.
-function lovePartnerId(){return state.role==='coach'?connectedAthleteId:sessionUser?.id}
-function loveNotesView(){
- const signed=!!(cloudReady&&sessionUser),isCoach=state.role==='coach',unread=loveNotes.filter(m=>m.recipient_id===sessionUser?.id&&!m.read_at).length;
- const visible=loveExpanded?loveNotes:loveNotes.slice(0,3);
- return `<h2>💌 Love Notes ${unread?`<span class="chip">❤️ ${unread} new</span>`:''}</h2><div class="card" style="border-color:#e8d6cb;background:#fffaf7">
- <h3>${isCoach?'Send Him Some Love ❤️':'A Message From Leah ❤️'}</h3>
- <p class="muted">A little encouragement, just for the two of you.</p>
- ${signed?(lovePartnerId()?`<label for="loveMessage">${isCoach?'Your message to him':'Send Leah some love'}</label><textarea id="loveMessage" maxlength="1500" placeholder="${isCoach?'I’m so proud of you, handsome ❤️':'Love you, baby ❤️'}"></textarea><div class="row" style="margin-top:9px"><button class="btn" onclick="sendLoveNote()" ${loveBusy?'disabled':''}>💌 Send love</button><button class="btn alt" onclick="sendQuickLove()" ${loveBusy?'disabled':''}>❤️ Send love back</button><button class="btn alt" onclick="loadLoveNotes().then(render)">↻ Refresh</button></div>`:`<p class="notice">${isCoach?'Connect his Athlete account in Settings to exchange Love Notes.':'Sign in to load your private Love Notes.'}</p>`):'<p class="notice">Sign in under Settings to send and read your private Love Notes.</p>'}
- ${loveError?`<p class="notice">${esc(loveError)}</p>`:''}
- <div style="margin-top:14px">${visible.length?visible.map(m=>`<div class="history"><div class="flex"><b>${m.sender_id===sessionUser?.id?'You':isCoach?'Your athlete':'Leah'} ${m.sender_id===sessionUser?.id?'💚':'❤️'}</b><small class="muted">${esc(new Date(m.created_at).toLocaleString())}</small></div><p style="white-space:pre-wrap;overflow-wrap:anywhere;margin:8px 0">${esc(m.body)}</p>${m.recipient_id===sessionUser?.id&&!m.read_at?'<span class="chip">New ❤️</span>':''}</div>`).join(''):'<p class="muted">No love notes yet. Send the first one!</p>'}</div>
- ${loveNotes.length>3?`<button class="btn alt" style="margin-top:10px" onclick="loveExpanded=!loveExpanded;render()">${loveExpanded?'Show less':'View all '+loveNotes.length+' messages'}</button>`:''}
- </div>`;
+function load(){
+try{
+return merge(fresh(),JSON.parse(localStorage.getItem(KEY)||'{}'));
+}catch{
+return fresh();
 }
-async function loadLoveNotes(){
- if(!client||!sessionUser){loveNotes=[];return}
- const athleteId=lovePartnerId();if(!athleteId){loveNotes=[];return}
- try{
-  let q=client.from('pacesetter_love_notes').select('id,athlete_id,sender_id,recipient_id,body,created_at,read_at').eq('athlete_id',athleteId).order('created_at',{ascending:false}).limit(100);
-  const {data,error}=await q;if(error)throw error;
-  loveNotes=data||[];loveError='';
-  const unread=loveNotes.filter(m=>m.recipient_id===sessionUser.id&&!m.read_at).map(m=>m.id);
-  if(unread.length){const {error:markError}=await client.from('pacesetter_love_notes').update({read_at:new Date().toISOString()}).in('id',unread).eq('recipient_id',sessionUser.id);if(markError)console.warn('Love Notes read receipt:',markError)}
- }catch(e){loveError='Love Notes need setup in Supabase, or the connection could not be loaded: '+e.message;console.warn(e)}
 }
-async function sendLoveNote(message){
- if(loveBusy||!cloudReady||!sessionUser){alert('Please sign in first.');return}
- const athleteId=lovePartnerId();if(!athleteId){alert('Connect the Athlete account first.');return}
- const body=String(message??el('loveMessage')?.value??'').trim();if(!body||body.length>1500){alert('Write a message of up to 1,500 characters.');return}
- loveBusy=true;
- try{
-  if(state.role==='coach'){
-   const {error}=await client.from('pacesetter_love_notes').insert({athlete_id:athleteId,sender_id:sessionUser.id,recipient_id:athleteId,body});if(error)throw error;
-  }else{
-   const {data:links,error:lookupError}=await client.from('pacesetter_coach_access').select('coach_id').eq('athlete_id',sessionUser.id).limit(1);
-   if(lookupError)throw lookupError;
-   const coachId=links?.[0]?.coach_id;if(!coachId)throw Error('No coach is linked to your account yet.');
-   const {error}=await client.from('pacesetter_love_notes').insert({athlete_id:sessionUser.id,sender_id:sessionUser.id,recipient_id:coachId,body});if(error)throw error;
+
+let state=load();
+let client=null;
+let currentUser=null;
+let athleteData=null;
+let coachAthleteId=null;
+let syncTimer=null;
+let syncPending=null;
+let realtimeChannel=null;
+let lastUserId=null;
+
+const el=id=>document.getElementById(id);
+const today=()=>new Date().toLocaleDateString('en-CA');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({
+'&':'&amp;','<':'&lt;','>':'&gt;',
+'"':'&quot;',"'":'&#39;'
+}[c]));
+
+function save(){
+localStorage.setItem(KEY,JSON.stringify(state));
+}
+
+function setStatus(message){
+const node=el('cloudStatus');
+if(node)node.textContent=message;
+}
+
+function accountKey(){
+return currentUser?'pacesetter-prefs-'+currentUser.id:null;
+}
+
+function saveAccountPrefs(){
+const key=accountKey();
+if(!key)return;
+localStorage.setItem(key,JSON.stringify({
+role:state.role,
+coachLink:state.coachLink,
+coachNotes:state.coachNotes
+}));
+}
+
+function loadAccountPrefs(){
+const key=accountKey();
+if(!key)return;
+try{
+const prefs=JSON.parse(localStorage.getItem(key)||'{}');
+if(prefs.role)state.role=prefs.role;
+if(typeof prefs.coachLink==='string')
+state.coachLink=prefs.coachLink;
+if(typeof prefs.coachNotes==='string')
+state.coachNotes=prefs.coachNotes;
+}catch(e){
+console.warn('Account preferences unavailable',e);
+}
+}
+
+function initCloud(){
+if(!window.supabase)return false;
+
+state.sync.url=SUPABASE_URL;
+state.sync.key=SUPABASE_KEY;
+
+if(client)return true;
+
+try{
+client=window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY,
+{
+auth:{
+persistSession:true,
+autoRefreshToken:true,
+detectSessionInUrl:true,
+storage:window.localStorage,
+storageKey:AUTH_STORAGE
+}
+}
+);
+return true;
+}catch(e){
+console.error('Supabase initialization failed',e);
+return false;
+}
+}
+
+function cloudReady(){
+return Boolean(client&&currentUser);
+}
+
+function athletePayload(){
+const data=structuredClone(state);
+
+[
+'sync','role','tab','coachLink',
+'coachNotes','session'
+].forEach(k=>delete data[k]);
+
+return data;
+}
+
+async function saveAthleteProfile(){
+if(!cloudReady()||state.role!=='athlete')
+return false;
+
+const {error}=await client
+.from('profiles')
+.upsert({
+id:currentUser.id,
+data:athletePayload(),
+updated_at:new Date().toISOString()
+},{onConflict:'id'});
+
+if(error)throw error;
+return true;
+}
+
+async function loadOwnProfile(){
+if(!cloudReady())return;
+
+const {data,error}=await client
+.from('profiles')
+.select('data')
+.eq('id',currentUser.id)
+.maybeSingle();
+
+if(error)throw error;
+
+if(data?.data&&state.role==='athlete'){
+const existingRole=state.role;
+const existingTab=state.tab;
+const existingSync=state.sync;
+const existingLink=state.coachLink;
+const existingNotes=state.coachNotes;
+
+state=merge(state,data.data);
+state.role=existingRole;
+state.tab=existingTab;
+state.sync=existingSync;
+state.coachLink=existingLink;
+state.coachNotes=existingNotes;
+save();
+}
+}
+
+async function activateSession(user){
+if(!user)return;
+
+const changedUser=lastUserId!==user.id;
+currentUser=user;
+lastUserId=user.id;
+
+state.sync.email=user.email||'';
+state.sync.linked=true;
+
+if(changedUser)loadAccountPrefs();
+
+try{
+await loadOwnProfile();
+if(state.role==='coach')
+await refreshCoach();
+await refreshLoveNotes?.();
+}catch(e){
+console.warn('Cloud restore issue:',e.message);
+}
+
+save();
+render();
+startAutoSync();
+}
+
+async function restoreCloud(){
+if(!initCloud())return;
+
+try{
+const {data,error}=await client.auth.getSession();
+if(error)throw error;
+
+if(data?.session?.user){
+await activateSession(data.session.user);
+}else{
+state.sync.linked=false;
+render();
+}
+
+client.auth.onAuthStateChange((event,session)=>{
+if(event==='SIGNED_OUT'){
+currentUser=null;
+lastUserId=null;
+state.sync.linked=false;
+save();
+render();
+}
+});
+}catch(e){
+console.error('Session restore failed:',e);
+setStatus(e.message);
+}
+}
+
+async function authCloud(mode){
+if(!initCloud()){
+alert('Cloud connection unavailable.');
+return;
+}
+
+const email=(el('cloudEmail')?.value||'').trim();
+const password=el('cloudPassword')?.value||'';
+
+if(!email||!password){
+alert('Enter your email and password.');
+return;
+}
+
+setStatus('Connecting...');
+
+try{
+let result;
+
+if(mode==='signup'){
+result=await client.auth.signUp({
+email,password
+});
+}else{
+result=await client.auth.signInWithPassword({
+email,password
+});
+}
+
+if(result.error)throw result.error;
+
+if(result.data?.user&&result.data?.session){
+await activateSession(result.data.user);
+setStatus('Connected successfully.');
+}else{
+setStatus('Check your email to confirm your account.');
+}
+}catch(e){
+setStatus(e.message);
+}
+}
+
+async function signOut(){
+if(!client)return;
+
+if(!confirm('Sign out of PACESETTER?'))return;
+
+try{
+await client.auth.signOut();
+currentUser=null;
+lastUserId=null;
+state.sync.linked=false;
+athleteData=null;
+coachAthleteId=null;
+stopAutoSync();
+save();
+render();
+}catch(e){
+alert(e.message);
+}
+}
+
+async function syncNow(){
+if(!cloudReady()){
+setStatus('Sign in to sync.');
+return;
+}
+
+try{
+if(state.role==='coach'){
+await refreshCoach();
+}else{
+await saveAthleteProfile();
+}
+await refreshLoveNotes?.();
+setStatus('Synced successfully.');
+}catch(e){
+console.error(e);
+setStatus('Sync failed: '+e.message);
+}
+}
+
+function queueSync(){
+save();
+
+if(syncPending)clearTimeout(syncPending);
+
+syncPending=setTimeout(async()=>{
+syncPending=null;
+if(!cloudReady())return;
+
+try{
+if(state.role==='athlete')
+await saveAthleteProfile();
+}catch(e){
+console.warn('Background sync failed:',e);
+}
+},1200);
+}
+
+async function syncNowSilent(){
+if(!cloudReady())return;
+
+try{
+if(state.role==='coach'){
+await refreshCoach();
+}else{
+await saveAthleteProfile();
+}
+if(typeof refreshLoveNotes==='function')
+await refreshLoveNotes();
+if(typeof refreshAssignments==='function')
+await refreshAssignments();
+if(typeof refreshPTResults==='function')
+await refreshPTResults();
+if(typeof refreshAwards==='function')
+await refreshAwards();
+}catch(e){
+console.warn('Automatic sync:',e.message);
+}
+}
+
+function startAutoSync(){
+stopAutoSync();
+
+syncTimer=setInterval(()=>{
+if(document.visibilityState==='visible')
+syncNowSilent();
+},120000);
+}
+
+function stopAutoSync(){
+if(syncTimer){
+clearInterval(syncTimer);
+syncTimer=null;
+}
+}
+
+document.addEventListener('visibilitychange',()=>{
+if(document.visibilityState==='visible'&&cloudReady())
+syncNowSilent();
+});
+
+async function createInvite(){
+if(!cloudReady()){
+alert('Sign in first.');
+return;
+}
+
+try{
+const {data,error}=await client.rpc('make_invite');
+if(error)throw error;
+
+const code=typeof data==='string'
+?data
+:(data?.code||data?.invite_code||'');
+
+if(!code)throw Error('No invite code returned.');
+
+const output=el('inviteCode');
+if(output)output.textContent=code;
+
+await navigator.clipboard?.writeText(code);
+alert('Invite code created and copied.');
+}catch(e){
+alert('Invite failed: '+e.message);
+}
+}
+
+async function joinAthlete(){
+if(!cloudReady()){
+alert('Sign in to your Coach account first.');
+return;
+}
+
+const code=(el('joinCode')?.value||'').trim();
+
+if(!code){
+alert('Enter the Athlete invite code.');
+return;
+}
+
+try{
+const joined=await client.rpc('join_invite',{
+invite_code:code
+});
+
+if(joined.error)throw joined.error;
+
+state.coachLink=code;
+saveAccountPrefs();
+save();
+
+await refreshCoach();
+render();
+
+alert('Athlete linked successfully!');
+}catch(e){
+alert('Could not link athlete: '+e.message);
+}
+}
+
+async function refreshCoach(){
+if(!cloudReady()||state.role!=='coach')
+return;
+
+const {data:links,error:linkError}=await client
+.from('pacesetter_coach_access')
+.select('athlete_id')
+.eq('coach_id',currentUser.id)
+.limit(1);
+
+if(linkError)throw linkError;
+
+const athleteId=links?.[0]?.athlete_id;
+
+if(!athleteId){
+coachAthleteId=null;
+athleteData=null;
+return;
+}
+
+coachAthleteId=athleteId;
+
+const {data:profile,error:profileError}=await client
+.from('profiles')
+.select('data')
+.eq('id',athleteId)
+.maybeSingle();
+
+if(!profileError&&profile?.data){
+athleteData=profile.data;
+return;
+}
+
+if(state.coachLink){
+const {data,error}=await client.rpc(
+'coach_read_athlete',
+{invite:state.coachLink}
+);
+
+if(!error&&data){
+athleteData=Array.isArray(data)
+?(data[0]?.data||data[0])
+:(data.data||data);
+return;
+}
+}
+
+if(profileError)throw profileError;
+athleteData=null;
+}
+
+async function saveCoachNote(){
+if(!cloudReady()){
+alert('Sign in first.');
+return;
+}
+
+state.coachNotes=el('coachNotes')?.value||'';
+saveAccountPrefs();
+save();
+
+try{
+const {error}=await client.from('profiles').upsert({
+id:currentUser.id,
+data:{coachNotes:state.coachNotes},
+updated_at:new Date().toISOString()
+},{onConflict:'id'});
+
+if(error)throw error;
+alert('Coach notes saved.');
+}catch(e){
+alert('Saved on this device, but cloud save failed: '+e.message);
+}
+}
+
+function toggleRole(){
+state.role=state.role==='coach'?'athlete':'coach';
+state.tab='home';
+saveAccountPrefs();
+save();
+
+if(state.role==='coach'&&cloudReady())
+refreshCoach().then(render).catch(console.warn);
+else render();
+}
+
+/* ================================================
+   PART 3 — ATHLETE TRAINING & PROGRESS
+   ================================================ */
+
+const TRAINING_LIBRARY = {
+  strength: [
+    {name:'Push-ups',sets:3,reps:'Max controlled reps'},
+    {name:'Bodyweight squats',sets:3,reps:'15'},
+    {name:'Plank',sets:3,reps:'45 seconds'},
+    {name:'Glute bridges',sets:3,reps:'15'},
+    {name:'Dead bugs',sets:3,reps:'12 per side'}
+  ],
+  run: [
+    {name:'Dynamic warm-up',sets:1,reps:'5 minutes'},
+    {name:'Running session',sets:1,reps:'Follow today’s running goal'},
+    {name:'Walking recovery',sets:1,reps:'5 minutes'},
+    {name:'Calf stretches',sets:2,reps:'30 seconds per side'}
+  ]
+};
+
+function dateKey(date=new Date()){
+  const y=date.getFullYear();
+  const m=String(date.getMonth()+1).padStart(2,'0');
+  const d=String(date.getDate()).padStart(2,'0');
+  return `${y}-${m}-${d}`;
+}
+
+function dayIndex(date=new Date()){
+  return (date.getDay()+6)%7;
+}
+
+function getTrainingDay(date=new Date()){
+  const index=dayIndex(date);
+  return TRAINING_DAYS[index]||null;
+}
+
+function getTodayExercises(){
+  const plan=getTrainingDay();
+  if(!plan)return [];
+  return TRAINING_LIBRARY[plan.kind]||[];
+}
+
+function workoutKey(date=dateKey()){
+  return `daily-${date}`;
+}
+
+function workoutRecord(date=dateKey()){
+  const key=workoutKey(date);
+  const value=state.workouts?.[key];
+
+  if(value&&typeof value==='object'){
+    return value;
   }
-  await loadLoveNotes();render();
- }catch(e){alert('Could not send Love Note: '+e.message)}finally{loveBusy=false}
+
+  return {
+    completed:false,
+    exercises:{},
+    completedAt:null
+  };
 }
-function sendQuickLove(){return sendLoveNote(state.role==='coach'?'Sending you all my love ❤️':'Sending you love back, baby ❤️')}
-// Automatically refresh cloud data every 2 minutes while PACESETTER is open.
-const AUTO_SYNC_MS = 2 * 60 * 1000;
-let autoSyncBusy = false;
-async function autoSyncPacesetter() {
-  if (autoSyncBusy || document.hidden || !cloudReady || !sessionUser || !client) return;
-  autoSyncBusy = true;
-  try {
-    // Avoid replacing an unsent Love Note while the user is typing.
-    const draft = document.getElementById('loveMessage');
-    const draftText = draft ? draft.value : null;
-    if (state.role === 'coach') {
-      await refreshCoach();
-    } else {
-      // Save locally recorded athlete progress before retrieving messages.
-      await syncNowSilent();
+
+function exerciseCompleted(index,date=dateKey()){
+  return Boolean(
+    workoutRecord(date).exercises?.[String(index)]
+  );
+}
+
+function setExerciseCompleted(index,checked){
+  if(state.role!=='athlete')return;
+
+  const key=workoutKey();
+  const record=workoutRecord();
+
+  record.exercises=record.exercises||{};
+  record.exercises[String(index)]=Boolean(checked);
+
+  const exercises=getTodayExercises();
+
+  record.completed=exercises.length>0&&
+    exercises.every((_,i)=>record.exercises[String(i)]);
+
+  record.completedAt=record.completed
+    ?new Date().toISOString()
+    :null;
+
+  state.workouts[key]=record;
+
+  queueSync();
+  render();
+}
+
+function finishWorkout(){
+  if(state.role!=='athlete')return;
+
+  const key=workoutKey();
+  const record=workoutRecord();
+  const exercises=getTodayExercises();
+
+  record.exercises={};
+
+  exercises.forEach((_,i)=>{
+    record.exercises[String(i)]=true;
+  });
+
+  record.completed=true;
+  record.completedAt=new Date().toISOString();
+
+  state.workouts[key]=record;
+
+  queueSync();
+  render();
+}
+
+function completedWorkoutDates(data=state){
+  const records=data.workouts||{};
+
+  return Object.entries(records)
+    .filter(([key,value])=>
+      key.startsWith('daily-')&&
+      value&&
+      typeof value==='object'&&
+      value.completed===true
+    )
+    .map(([key])=>key.replace('daily-',''))
+    .sort();
+}
+
+function completedWorkoutCount(data=state){
+  return completedWorkoutDates(data).length;
+}
+
+function workoutStreak(data=state){
+  const dates=new Set(completedWorkoutDates(data));
+
+  let cursor=new Date();
+  cursor.setHours(12,0,0,0);
+
+  if(!dates.has(dateKey(cursor))){
+    cursor.setDate(cursor.getDate()-1);
+  }
+
+  let streak=0;
+
+  while(dates.has(dateKey(cursor))){
+    streak++;
+    cursor.setDate(cursor.getDate()-1);
+  }
+
+  return streak;
+}
+
+function workoutsThisWeek(data=state){
+  const dates=completedWorkoutDates(data);
+
+  const now=new Date();
+  const monday=new Date(now);
+  monday.setDate(now.getDate()-dayIndex(now));
+
+  const start=dateKey(monday);
+
+  return dates.filter(d=>d>=start&&d<=dateKey(now)).length;
+}
+
+function formatSeconds(value){
+  const seconds=Math.max(0,Math.round(Number(value)||0));
+
+  return `${Math.floor(seconds/60)}:${String(
+    seconds%60
+  ).padStart(2,'0')}`;
+}
+
+function parseRunTime(value){
+  if(typeof value==='number'&&Number.isFinite(value)){
+    return Math.max(0,Math.round(value));
+  }
+
+  const text=String(value||'').trim();
+
+  if(!text)return null;
+
+  if(text.includes(':')){
+    const parts=text.split(':').map(Number);
+
+    if(parts.length!==2||
+       parts.some(n=>!Number.isFinite(n))||
+       parts[1]<0||
+       parts[1]>=60){
+      return null;
     }
-    await loadLoveNotes();
+
+    return Math.round(parts[0]*60+parts[1]);
+  }
+
+  const n=Number(text);
+
+  return Number.isFinite(n)&&n>=0
+    ?Math.round(n)
+    :null;
+}
+
+function latestScore(data=state){
+  const scores=data.scores||[];
+
+  return scores.length
+    ?scores[scores.length-1]
+    :null;
+}
+
+function bestRunTime(data=state){
+  const times=(data.scores||[])
+    .map(s=>Number(s.run))
+    .filter(n=>Number.isFinite(n)&&n>0);
+
+  return times.length?Math.min(...times):null;
+}
+
+function bestPushups(data=state){
+  const values=(data.scores||[])
+    .map(s=>Number(s.push))
+    .filter(n=>Number.isFinite(n)&&n>=0);
+
+  return values.length?Math.max(...values):null;
+}
+
+function bestSitups(data=state){
+  const values=(data.scores||[])
+    .map(s=>Number(s.sit))
+    .filter(n=>Number.isFinite(n)&&n>=0);
+
+  return values.length?Math.max(...values):null;
+}
+
+function recordPTScore(){
+  if(state.role!=='athlete')return;
+
+  const push=Number(el('ptPush')?.value);
+  const sit=Number(el('ptSit')?.value);
+  const run=parseRunTime(el('ptRun')?.value);
+
+  if(!Number.isFinite(push)||
+     !Number.isFinite(sit)||
+     push<0||
+     sit<0||
+     !Number.isInteger(push)||
+     !Number.isInteger(sit)||
+     run===null||
+     run<=0){
+    alert('Enter valid push-ups, sit-ups, and a run time such as 17:30.');
+    return;
+  }
+
+  state.scores=state.scores||[];
+
+  state.scores.push({
+    id:crypto.randomUUID(),
+    date:dateKey(),
+    push,
+    sit,
+    run,
+    createdAt:new Date().toISOString()
+  });
+
+  queueSync();
+  render();
+}
+
+function deletePTScore(id){
+  if(state.role!=='athlete')return;
+
+  if(!confirm('Delete this PT practice result?'))return;
+
+  state.scores=(state.scores||[])
+    .filter(s=>s.id!==id);
+
+  queueSync();
+  render();
+}
+
+function runImprovement(data=state){
+  const scores=(data.scores||[])
+    .filter(s=>Number(s.run)>0);
+
+  if(scores.length<2)return null;
+
+  const first=Number(scores[0].run);
+  const latest=Number(scores[scores.length-1].run);
+
+  return first-latest;
+}
+
+function ptReadiness(data=state){
+  const latest=latestScore(data);
+
+  if(!latest){
+    return {
+      label:'No practice result yet',
+      progress:0,
+      remaining:null
+    };
+  }
+
+  const goal=Number(data.runGoal)||1020;
+  const current=Number(latest.run)||0;
+
+  if(current<=0){
+    return {
+      label:'Run time unavailable',
+      progress:0,
+      remaining:null
+    };
+  }
+
+  const difference=current-goal;
+
+  if(difference<=0){
+    return {
+      label:'Personal run target reached',
+      progress:100,
+      remaining:0
+    };
+  }
+
+  const progress=Math.max(
+    0,
+    Math.min(99,Math.round(goal/current*100))
+  );
+
+  return {
+    label:`${formatSeconds(difference)} from personal run target`,
+    progress,
+    remaining:difference
+  };
+}
+
+/*
+ PT readiness is a personal training indicator,
+ NOT an official USAF PT score or pass prediction.
+ Official scoring depends on current standards,
+ age, sex, approved components and test rules.
+*/
+
+function setRunGoal(){
+  if(state.role!=='athlete')return;
+
+  const value=parseRunTime(el('runGoalInput')?.value);
+
+  if(value===null||value<=0){
+    alert('Enter a valid target time, such as 16:30.');
+    return;
+  }
+
+  state.runGoal=value;
+  queueSync();
+  render();
+}
+
+function waterToday(data=state){
+  return Number(data.water?.[dateKey()]||0);
+}
+
+function addWater(amount){
+  if(state.role!=='athlete')return;
+
+  const key=dateKey();
+
+  state.water=state.water||{};
+  state.water[key]=Math.max(
+    0,
+    Number(state.water[key]||0)+Number(amount||0)
+  );
+
+  queueSync();
+  render();
+}
+
+function setWaterGoal(){
+  if(state.role!=='athlete')return;
+
+  const value=Number(el('waterGoalInput')?.value);
+
+  if(!Number.isFinite(value)||value<250||value>10000){
+    alert('Enter a daily water goal between 250 and 10,000 mL.');
+    return;
+  }
+
+  state.waterGoalMl=Math.round(value);
+
+  queueSync();
+  render();
+}
+
+function waterProgress(data=state){
+  const goal=Number(data.waterGoalMl)||2500;
+
+  return Math.max(
+    0,
+    Math.min(100,Math.round(waterToday(data)/goal*100))
+  );
+}
+
+function hydrationDays(data=state){
+  const goal=Number(data.waterGoalMl)||2500;
+
+  return Object.values(data.water||{})
+    .filter(v=>Number(v)>=goal).length;
+}
+
+function calculateLocalAchievements(data=state){
+  const achievements=[];
+  const workouts=completedWorkoutCount(data);
+  const streak=workoutStreak(data);
+  const pt=(data.scores||[]).length;
+
+  if(workouts>=1){
+    achievements.push({
+      id:'first-workout',
+      icon:'🏁',
+      title:'First Workout',
+      description:'Completed the first training session.'
+    });
+  }
+
+  if(workouts>=10){
+    achievements.push({
+      id:'ten-workouts',
+      icon:'🏆',
+      title:'10 Workouts Strong',
+      description:'Completed ten training sessions.'
+    });
+  }
+
+  if(workouts>=25){
+    achievements.push({
+      id:'twenty-five-workouts',
+      icon:'💪',
+      title:'Consistency Champion',
+      description:'Completed twenty-five training sessions.'
+    });
+  }
+
+  if(streak>=7){
+    achievements.push({
+      id:'seven-day-streak',
+      icon:'🔥',
+      title:'Seven-Day Streak',
+      description:'Completed seven consecutive daily sessions.'
+    });
+  }
+
+  if(pt>=1){
+    achievements.push({
+      id:'first-pt',
+      icon:'🎯',
+      title:'PT Baseline',
+      description:'Recorded the first PT practice result.'
+    });
+  }
+
+  if(pt>=5){
+    achievements.push({
+      id:'five-pt',
+      icon:'📈',
+      title:'Progress Tracker',
+      description:'Recorded five PT practice results.'
+    });
+  }
+
+  if(hydrationDays(data)>=7){
+    achievements.push({
+      id:'hydration-week',
+      icon:'💧',
+      title:'Hydration Hero',
+      description:'Reached the daily water goal seven times.'
+    });
+  }
+
+  if(ptReadiness(data).remaining===0){
+    achievements.push({
+      id:'run-goal',
+      icon:'🥇',
+      title:'Run Goal Reached',
+      description:'Reached the personal run-time target.'
+    });
+  }
+
+  return achievements;
+}
+
+function trainingAnalytics(data=state){
+  const workouts=completedWorkoutCount(data);
+  const thisWeek=workoutsThisWeek(data);
+  const streak=workoutStreak(data);
+  const scores=data.scores||[];
+
+  return {
+    totalWorkouts:workouts,
+    workoutsThisWeek:thisWeek,
+    weeklyCompletionPercent:Math.round(thisWeek/6*100),
+    streak,
+    ptSessions:scores.length,
+    bestRun:bestRunTime(data),
+    bestPush:bestPushups(data),
+    bestSit:bestSitups(data),
+    runImprovement:runImprovement(data),
+    achievements:calculateLocalAchievements(data)
+  };
+}
+
+function recentWorkoutHistory(data=state,limit=10){
+  return completedWorkoutDates(data)
+    .reverse()
+    .slice(0,limit)
+    .map(date=>({
+      date,
+      title:'Daily training completed'
+    }));
+}
+
+function formatDate(value){
+  if(!value)return 'Not scheduled';
+
+  const d=new Date(`${value}T12:00:00`);
+
+  return Number.isNaN(d.getTime())
+    ?String(value)
+    :d.toLocaleDateString('en-US',{
+      month:'short',
+      day:'numeric',
+      year:'numeric'
+    });
+}
+
+function progressBar(percent){
+  const value=Math.max(
+    0,
+    Math.min(100,Number(percent)||0)
+  );
+
+  return `<div class="bar">
+    <div class="fill" style="width:${value}%"></div>
+  </div>`;
+}
+
+/* ================================================
+   PART 4 — SUPABASE TRAINING FEATURES
+   ================================================ */
+
+let assignments=[];
+let ptResults=[];
+let coachAwards=[];
+let trainingChannel=null;
+let trainingRefreshBusy=false;
+
+const TRAINING_TABLES={
+  assignments:'pacesetter_assignments',
+  pt:'pacesetter_pt_results',
+  awards:'pacesetter_awards'
+};
+
+function trainingAthleteId(){
+  if(!currentUser)return null;
+
+  return state.role==='coach'
+    ?coachAthleteId
+    :currentUser.id;
+}
+
+function canCoach(){
+  return Boolean(
+    cloudReady()&&
+    state.role==='coach'&&
+    coachAthleteId
+  );
+}
+
+function canAthlete(){
+  return Boolean(
+    cloudReady()&&
+    state.role==='athlete'
+  );
+}
+
+function friendlyError(error){
+  if(!error)return 'Unknown error';
+
+  if(error.code==='42P01'){
+    return 'The training tables have not been created in Supabase yet. Run the upgrade SQL first.';
+  }
+
+  if(error.code==='42501'){
+    return 'Supabase denied permission. Check the database access policies and Coach–Athlete link.';
+  }
+
+  return error.message||String(error);
+}
+
+function showTrainingError(error){
+  console.error('PACESETTER training error:',error);
+  alert(friendlyError(error));
+}
+
+function sortNewest(items,key='created_at'){
+  return [...(items||[])].sort((a,b)=>
+    String(b[key]||'').localeCompare(
+      String(a[key]||'')
+    )
+  );
+}
+
+function formatTimestamp(value){
+  if(!value)return '';
+
+  const date=new Date(value);
+
+  if(Number.isNaN(date.getTime())){
+    return String(value);
+  }
+
+  return date.toLocaleString('en-US',{
+    month:'short',
+    day:'numeric',
+    hour:'numeric',
+    minute:'2-digit'
+  });
+}
+
+/* --------------------------------
+   WORKOUT ASSIGNMENTS
+   -------------------------------- */
+
+async function refreshAssignments(){
+  if(!cloudReady()){
+    assignments=[];
+    return;
+  }
+
+  const athleteId=trainingAthleteId();
+
+  if(!athleteId){
+    assignments=[];
+    return;
+  }
+
+  const {data,error}=await client
+    .from(TRAINING_TABLES.assignments)
+    .select('*')
+    .eq('athlete_id',athleteId)
+    .order('scheduled_date',{
+      ascending:false
+    })
+    .limit(150);
+
+  if(error)throw error;
+
+  assignments=data||[];
+}
+
+async function createWorkoutAssignment(){
+  if(!canCoach()){
+    alert('Link an Athlete account before assigning workouts.');
+    return;
+  }
+
+  const title=(el('assignmentTitle')?.value||'').trim();
+  const date=el('assignmentDate')?.value||dateKey();
+  const details=(el('assignmentDetails')?.value||'').trim();
+
+  if(!title){
+    alert('Enter a workout title.');
+    return;
+  }
+
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(date)){
+    alert('Choose a valid workout date.');
+    return;
+  }
+
+  if(title.length>120||details.length>3000){
+    alert('Please shorten the workout title or instructions.');
+    return;
+  }
+
+  try{
+    const {error}=await client
+      .from(TRAINING_TABLES.assignments)
+      .insert({
+        athlete_id:coachAthleteId,
+        coach_id:currentUser.id,
+        title,
+        details,
+        scheduled_date:date,
+        status:'assigned'
+      });
+
+    if(error)throw error;
+
+    await refreshAssignments();
     render();
-    if (draftText !== null && document.getElementById('loveMessage')) {
-      document.getElementById('loveMessage').value = draftText;
-    }
-  } catch (error) {
-    console.warn('PACESETTER automatic sync:', error);
-  } finally {
-    autoSyncBusy = false;
+
+    alert('Workout assigned successfully!');
+  }catch(error){
+    showTrainingError(error);
   }
 }
-setInterval(autoSyncPacesetter, AUTO_SYNC_MS);
-// Check for new messages when the app returns to the foreground.
-document.addEventListener('visibilitychange',()=>{if(!document.hidden)autoSyncPacesetter()});
 
-// Startup: migrate existing Supabase v2 browser session if possible.
-tryMigrateSession();
-if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(console.warn);
-render();restoreCloud();
-</script></body></html>
+async function completeAssignedWorkout(id){
+  if(!canAthlete()){
+    alert('Sign in to your Athlete account.');
+    return;
+  }
+
+  const assignment=assignments.find(a=>a.id===id);
+
+  if(!assignment){
+    alert('Workout not found. Refresh the app.');
+    return;
+  }
+
+  if(assignment.athlete_id!==currentUser.id){
+    alert('This workout does not belong to your account.');
+    return;
+  }
+
+  try{
+    const {error}=await client
+      .from(TRAINING_TABLES.assignments)
+      .update({
+        status:'completed',
+        completed_at:new Date().toISOString()
+      })
+      .eq('id',id)
+      .eq('athlete_id',currentUser.id);
+
+    if(error)throw error;
+
+    await refreshAssignments();
+    render();
+  }catch(error){
+    showTrainingError(error);
+  }
+}
+
+async function reopenAssignedWorkout(id){
+  if(!canCoach())return;
+
+  if(!confirm('Mark this assignment as incomplete again?')){
+    return;
+  }
+
+  try{
+    const {error}=await client
+      .from(TRAINING_TABLES.assignments)
+      .update({
+        status:'assigned',
+        completed_at:null
+      })
+      .eq('id',id)
+      .eq('coach_id',currentUser.id);
+
+    if(error)throw error;
+
+    await refreshAssignments();
+    render();
+  }catch(error){
+    showTrainingError(error);
+  }
+}
+
+async function deleteAssignedWorkout(id){
+  if(!canCoach())return;
+
+  if(!confirm('Delete this assigned workout?')){
+    return;
+  }
+
+  try{
+    const {error}=await client
+      .from(TRAINING_TABLES.assignments)
+      .delete()
+      .eq('id',id)
+      .eq('coach_id',currentUser.id);
+
+    if(error)throw error;
+
+    await refreshAssignments();
+    render();
+  }catch(error){
+    showTrainingError(error);
+  }
+}
+
+function assignmentStats(){
+  const completed=assignments.filter(a=>
+    a.status==='completed'
+  ).length;
+
+  const total=assignments.length;
+
+  const overdue=assignments.filter(a=>
+    a.status!=='completed'&&
+    a.scheduled_date<dateKey()
+  ).length;
+
+  const upcoming=assignments.filter(a=>
+    a.status!=='completed'&&
+    a.scheduled_date>=dateKey()
+  ).length;
+
+  return {
+    total,
+    completed,
+    overdue,
+    upcoming,
+    completionPercent:total
+      ?Math.round(completed/total*100)
+      :0
+  };
+}
+
+/* --------------------------------
+   CLOUD PT PRACTICE RESULTS
+   -------------------------------- */
+
+async function refreshPTResults(){
+  if(!cloudReady()){
+    ptResults=[];
+    return;
+  }
+
+  const athleteId=trainingAthleteId();
+
+  if(!athleteId){
+    ptResults=[];
+    return;
+  }
+
+  const {data,error}=await client
+    .from(TRAINING_TABLES.pt)
+    .select('*')
+    .eq('athlete_id',athleteId)
+    .order('created_at',{
+      ascending:false
+    })
+    .limit(100);
+
+  if(error)throw error;
+
+  ptResults=data||[];
+}
+
+async function submitCloudPTResult(){
+  if(!canAthlete()){
+    alert('Sign in to your Athlete account first.');
+    return;
+  }
+
+  const pushText=(el('cloudPush')?.value||'').trim();
+  const sitText=(el('cloudSit')?.value||'').trim();
+  const runText=(el('cloudRun')?.value||'').trim();
+
+  const push=Number(pushText);
+  const sit=Number(sitText);
+  const run=parseRunTime(runText);
+
+  if(!pushText||!sitText||!runText||
+     !Number.isInteger(push)||
+     !Number.isInteger(sit)||
+     push<0||sit<0||
+     run===null||run<=0){
+    alert('Enter push-ups, sit-ups, and a run time like 17:30.');
+    return;
+  }
+
+  const notes=(el('cloudPTNotes')?.value||'').trim();
+
+  try{
+    const {error}=await client
+      .from(TRAINING_TABLES.pt)
+      .insert({
+        athlete_id:currentUser.id,
+        pushups:push,
+        situps:sit,
+        run_seconds:run,
+        notes,
+        test_date:dateKey()
+      });
+
+    if(error)throw error;
+
+    await refreshPTResults();
+    render();
+
+    alert('PT practice result saved!');
+  }catch(error){
+    showTrainingError(error);
+  }
+}
+
+function cloudPTAnalytics(){
+  const validRuns=ptResults
+    .map(r=>Number(r.run_seconds))
+    .filter(v=>Number.isFinite(v)&&v>0);
+
+  const pushes=ptResults
+    .map(r=>Number(r.pushups))
+    .filter(Number.isFinite);
+
+  const sits=ptResults
+    .map(r=>Number(r.situps))
+    .filter(Number.isFinite);
+
+  return {
+    sessions:ptResults.length,
+    bestRun:validRuns.length
+      ?Math.min(...validRuns)
+      :null,
+    bestPush:pushes.length
+      ?Math.max(...pushes)
+      :null,
+    bestSit:sits.length
+      ?Math.max(...sits)
+      :null
+  };
+}
+
+/* --------------------------------
+   COACH ACHIEVEMENT AWARDS
+   -------------------------------- */
+
+async function refreshAwards(){
+  if(!cloudReady()){
+    coachAwards=[];
+    return;
+  }
+
+  const athleteId=trainingAthleteId();
+
+  if(!athleteId){
+    coachAwards=[];
+    return;
+  }
+
+  const {data,error}=await client
+    .from(TRAINING_TABLES.awards)
+    .select('*')
+    .eq('athlete_id',athleteId)
+    .order('created_at',{
+      ascending:false
+    })
+    .limit(100);
+
+  if(error)throw error;
+
+  coachAwards=data||[];
+}
+
+async function sendCoachAward(){
+  if(!canCoach()){
+    alert('Link an Athlete account first.');
+    return;
+  }
+
+  const title=(el('awardTitle')?.value||'').trim();
+  const message=(el('awardMessage')?.value||'').trim();
+  const icon=(el('awardIcon')?.value||'🏆').trim();
+
+  if(!title){
+    alert('Give this achievement a title.');
+    return;
+  }
+
+  if(title.length>120||message.length>1000){
+    alert('Please shorten the award.');
+    return;
+  }
+
+  try{
+    const {error}=await client
+      .from(TRAINING_TABLES.awards)
+      .insert({
+        athlete_id:coachAthleteId,
+        coach_id:currentUser.id,
+        title,
+        message,
+        icon
+      });
+
+    if(error)throw error;
+
+    await refreshAwards();
+    render();
+
+    alert('Achievement awarded!');
+  }catch(error){
+    showTrainingError(error);
+  }
+}
+
+/* --------------------------------
+   LIVE SUPABASE UPDATES
+   -------------------------------- */
+
+function stopTrainingRealtime(){
+  if(trainingChannel&&client){
+    client.removeChannel(trainingChannel);
+  }
+
+  trainingChannel=null;
+}
+
+function startTrainingRealtime(){
+  stopTrainingRealtime();
+
+  if(!cloudReady())return;
+
+  const athleteId=trainingAthleteId();
+
+  if(!athleteId)return;
+
+  trainingChannel=client
+    .channel(`pacesetter-training-${athleteId}`)
+    .on(
+      'postgres_changes',
+      {
+        event:'*',
+        schema:'public',
+        table:TRAINING_TABLES.assignments,
+        filter:`athlete_id=eq.${athleteId}`
+      },
+      ()=>refreshTrainingData()
+    )
+    .on(
+      'postgres_changes',
+      {
+        event:'*',
+        schema:'public',
+        table:TRAINING_TABLES.pt,
+        filter:`athlete_id=eq.${athleteId}`
+      },
+      ()=>refreshTrainingData()
+    )
+    .on(
+      'postgres_changes',
+      {
+        event:'*',
+        schema:'public',
+        table:TRAINING_TABLES.awards,
+        filter:`athlete_id=eq.${athleteId}`
+      },
+      ()=>refreshTrainingData()
+    )
+    .subscribe(status=>{
+      if(status==='CHANNEL_ERROR'){
+        console.warn('Realtime disconnected. Two-minute sync remains available.');
+      }
+    });
+}
+
+async function refreshTrainingData(){
+  if(trainingRefreshBusy||!cloudReady())return;
+
+  trainingRefreshBusy=true;
+
+  try{
+    await Promise.all([
+      refreshAssignments(),
+      refreshPTResults(),
+      refreshAwards()
+    ]);
+
+    render();
+  }catch(error){
+    console.warn(
+      'Training refresh failed:',
+      friendlyError(error)
+    );
+  }finally{
+    trainingRefreshBusy=false;
+  }
+}
+
+async function initializeTrainingFeatures(){
+  if(!cloudReady())return;
+
+  try{
+    await refreshTrainingData();
+    startTrainingRealtime();
+  }catch(error){
+    console.warn(
+      'Training features unavailable:',
+      friendlyError(error)
+    );
+  }
+}
+
+/* --------------------------------
+   TRAINING ANALYTICS
+   -------------------------------- */
+
+function combinedTrainingAnalytics(){
+  const assigned=assignmentStats();
+  const cloudPT=cloudPTAnalytics();
+
+  const profile=state.role==='coach'
+    ?(athleteData||{})
+    :state;
+
+  const local=trainingAnalytics(profile);
+
+  return {
+    assigned,
+    cloudPT,
+    local,
+    coachAwards:coachAwards.length,
+    totalAchievements:
+      local.achievements.length+coachAwards.length
+  };
+}
+
+function workoutAssignmentList(limit=20){
+  return [...assignments]
+    .sort((a,b)=>{
+      if(a.status==='completed'&&
+         b.status!=='completed')return 1;
+
+      if(b.status==='completed'&&
+         a.status!=='completed')return -1;
+
+      return String(a.scheduled_date)
+        .localeCompare(String(b.scheduled_date));
+    })
+    .slice(0,limit);
+}
+
+/* --------------------------------
+   iPHONE NOTIFICATION FOUNDATION
+   -------------------------------- */
+
+/*
+ Supabase Realtime supports live in-app updates.
+
+ Actual iPhone push notifications require:
+ 1. A secure HTTPS-installed web app.
+ 2. A service worker with push handling.
+ 3. User notification permission.
+ 4. A push subscription stored securely.
+ 5. A trusted server or Edge Function to send
+    Web Push messages.
+
+ This part does not claim to provide background
+ push notifications. Those require additional
+ files and server-side configuration.
+*/
+
+function iphoneNotificationSupported(){
+  return Boolean(
+    'Notification' in window&&
+    'serviceWorker' in navigator&&
+    'PushManager' in window
+  );
+}
+
+function notificationAvailabilityText(){
+  if(!iphoneNotificationSupported()){
+    return 'Background push notifications are not available in this browser.';
+  }
+
+  if(Notification.permission==='granted'){
+    return 'Notification permission granted. Push delivery still requires server setup.';
+  }
+
+  if(Notification.permission==='denied'){
+    return 'Notifications are blocked in iPhone settings.';
+  }
+
+  return 'Background push notifications are not configured yet.';
+}
+
+async function requestNotificationPermission(){
+  if(!iphoneNotificationSupported()){
+    alert('Install PACESETTER on your iPhone Home Screen to check notification support.');
+    return;
+  }
+
+  try{
+    const permission=await Notification.requestPermission();
+
+    if(permission==='granted'){
+      alert('Permission granted. Background push delivery requires additional setup.');
+    }else{
+      alert('Notification permission: '+permission);
+    }
+  }catch(error){
+    alert('Notification permission failed: '+error.message);
+  }
+}
+
+/* ================================================
+   PART 5 — ATHLETE DASHBOARD & TRAINING SCREENS
+   ================================================ */
+
+function metricCard(label,value,description=''){
+  return `<div class="metric">
+    <small>${esc(label)}</small>
+    <div class="big">${esc(value)}</div>
+    ${description
+      ?`<div class="muted">${esc(description)}</div>`
+      :''}
+  </div>`;
+}
+
+function sectionHeading(title,subtitle=''){
+  return `<div style="margin:23px 0 12px">
+    <h2 style="margin:0 0 5px">${esc(title)}</h2>
+    ${subtitle
+      ?`<div class="muted">${esc(subtitle)}</div>`
+      :''}
+  </div>`;
+}
+
+function emptyState(message){
+  return `<div class="empty">${esc(message)}</div>`;
+}
+
+function athleteWelcome(){
+  const name=state.name||'Athlete';
+  const completed=completedWorkoutCount();
+  const streak=workoutStreak();
+
+  return `<div class="hero">
+    <div class="eyebrow">ATHLETE DASHBOARD</div>
+    <h1>Let's get after it, ${esc(name)}.</h1>
+    <p>Every workout is another step toward your goal.</p>
+    <div class="row" style="margin-top:16px">
+      <span class="pill">💪 ${completed} workouts</span>
+      <span class="pill">🔥 ${streak} day streak</span>
+    </div>
+  </div>`;
+}
+
+function renderDailyWorkout(){
+  const plan=getTrainingDay();
+  const exercises=getTodayExercises();
+
+  if(!plan){
+    return `<div class="card accent">
+      <h3>🌿 Recovery Day</h3>
+      <p class="muted">
+        Today is for recovery, mobility, and preparing
+        for your next training session.
+      </p>
+    </div>`;
+  }
+
+  const record=workoutRecord();
+  const done=exercises.filter((_,i)=>
+    exerciseCompleted(i)
+  ).length;
+
+  const progress=exercises.length
+    ?Math.round(done/exercises.length*100)
+    :0;
+
+  return `<div class="card">
+    <div class="flex">
+      <div>
+        <div class="eyebrow" style="color:#56816b">
+          TODAY'S TRAINING
+        </div>
+        <h3>${esc(plan.theme)}</h3>
+      </div>
+      <span class="chip">${done}/${exercises.length}</span>
+    </div>
+
+    ${progressBar(progress)}
+
+    ${exercises.map((exercise,i)=>`
+      <div class="exercise">
+        <div class="row" style="flex-wrap:nowrap">
+          <input
+            class="check"
+            type="checkbox"
+            style="width:22px;flex:none"
+            ${exerciseCompleted(i)?'checked':''}
+            onchange="setExerciseCompleted(${i},this.checked)"
+          >
+          <div style="flex:1">
+            <strong>${esc(exercise.name)}</strong>
+            <div class="muted">
+              ${esc(exercise.sets)} set(s) ·
+              ${esc(exercise.reps)}
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('')}
+
+    <button class="btn"
+      style="width:100%;margin-top:15px"
+      onclick="finishWorkout()">
+      ${record.completed
+        ?'✓ Workout Completed'
+        :'Mark Entire Workout Complete'}
+    </button>
+  </div>`;
+}
+
+function renderAthleteAssignments(){
+  const pending=workoutAssignmentList(100)
+    .filter(a=>a.status!=='completed');
+
+  const completed=sortNewest(
+    assignments.filter(a=>a.status==='completed'),
+    'completed_at'
+  ).slice(0,5);
+
+  return `${sectionHeading(
+    '📋 Coach-Assigned Workouts',
+    'Your personalized training schedule.'
+  )}
+
+  <div class="card">
+    ${!cloudReady()
+      ?emptyState('Sign in to load your assigned workouts.')
+      :pending.length===0
+        ?emptyState('No pending assignments. Check back after your Coach schedules a workout.')
+        :pending.map(a=>`
+          <div class="exercise">
+            <div class="flex">
+              <strong>${esc(a.title)}</strong>
+              <span class="chip">
+                ${esc(formatDate(a.scheduled_date))}
+              </span>
+            </div>
+
+            ${a.details
+              ?`<p class="muted" style="white-space:pre-wrap">${esc(a.details)}</p>`
+              :''}
+
+            ${a.scheduled_date<dateKey()
+              ?'<div class="small" style="color:#a65b32">Past scheduled date</div>'
+              :''}
+
+            <button class="btn"
+              onclick="completeAssignedWorkout('${esc(a.id)}')">
+              ✓ Mark Complete
+            </button>
+          </div>
+        `).join('')
+    }
+
+    ${completed.length
+      ?`<details>
+        <summary>View recently completed assignments (${completed.length})</summary>
+        ${completed.map(a=>`
+          <div class="history">
+            <strong>✓ ${esc(a.title)}</strong>
+            <div class="muted">
+              Completed ${esc(formatTimestamp(a.completed_at))}
+            </div>
+          </div>
+        `).join('')}
+      </details>`
+      :''}
+  </div>`;
+}
+
+function renderHydration(){
+  const amount=waterToday();
+  const goal=Number(state.waterGoalMl)||2500;
+  const progress=waterProgress();
+
+  return `${sectionHeading(
+    '💧 Hydration',
+    'Keep your daily water intake on track.'
+  )}
+
+  <div class="card blue">
+    <div class="flex">
+      <div>
+        <div class="big" style="font-size:26px;font-weight:850">
+          ${amount.toLocaleString()} mL
+        </div>
+        <div class="muted">
+          of ${goal.toLocaleString()} mL daily goal
+        </div>
+      </div>
+      <span class="chip">${progress}%</span>
+    </div>
+
+    ${progressBar(progress)}
+
+    <div class="row" style="margin-top:14px">
+      <button class="btn alt" onclick="addWater(250)">
+        +250 mL
+      </button>
+      <button class="btn alt" onclick="addWater(500)">
+        +500 mL
+      </button>
+      <button class="btn alt" onclick="addWater(-250)">
+        −250 mL
+      </button>
+    </div>
+
+    <details>
+      <summary>Change water goal</summary>
+      <label for="waterGoalInput">Daily goal (mL)</label>
+      <input id="waterGoalInput"
+        type="number"
+        min="250"
+        max="10000"
+        value="${goal}">
+      <button class="btn" style="margin-top:10px"
+        onclick="setWaterGoal()">
+        Save Water Goal
+      </button>
+    </details>
+  </div>`;
+}
+
+function renderPTReadiness(){
+  const readiness=ptReadiness();
+  const latest=latestScore();
+  const analytics=trainingAnalytics();
+  const cloud=cloudPTAnalytics();
+
+  return `${sectionHeading(
+    '🎯 PT Readiness',
+    'Monitor your personal training targets and practice results.'
+  )}
+
+  <div class="card">
+    <div class="flex">
+      <div>
+        <div class="muted">Personal run target</div>
+        <div class="big" style="font-size:29px;font-weight:850">
+          ${formatSeconds(state.runGoal||1020)}
+        </div>
+      </div>
+      <span class="chip">
+        ${readiness.progress}% target indicator
+      </span>
+    </div>
+
+    ${progressBar(readiness.progress)}
+
+    <p class="muted">${esc(readiness.label)}</p>
+
+    <div class="metricgrid">
+      ${metricCard(
+        'Best Run',
+        cloud.bestRun!==null
+          ?formatSeconds(cloud.bestRun)
+          :analytics.bestRun!==null
+            ?formatSeconds(analytics.bestRun)
+            :'—'
+      )}
+      ${metricCard(
+        'Best Push-ups',
+        cloud.bestPush!==null
+          ?cloud.bestPush
+          :analytics.bestPush??'—'
+      )}
+      ${metricCard(
+        'Best Sit-ups',
+        cloud.bestSit!==null
+          ?cloud.bestSit
+          :analytics.bestSit??'—'
+      )}
+      ${metricCard(
+        'Practice Sessions',
+        cloud.sessions+(state.scores||[]).length
+      )}
+    </div>
+
+    <details>
+      <summary>Change personal run target</summary>
+      <label for="runGoalInput">Target time (MM:SS)</label>
+      <input id="runGoalInput"
+        placeholder="16:30"
+        value="${formatSeconds(state.runGoal||1020)}">
+      <button class="btn" style="margin-top:10px"
+        onclick="setRunGoal()">
+        Save Target
+      </button>
+    </details>
+
+    <p class="muted" style="font-size:11px;margin-top:14px">
+      This is a personal training indicator, not an official
+      USAF fitness score or pass prediction. Official
+      standards depend on the applicable testing rules.
+    </p>
+  </div>
+
+  ${renderCloudPTForm()}
+
+  ${renderCloudPTHistory()}`;
+}
+
+function renderCloudPTForm(){
+  return `<div class="card">
+    <h3>Record a PT Practice Test</h3>
+    <p class="muted">
+      Your results will sync to Supabase so your Coach
+      can see your progress.
+    </p>
+
+    <div class="formgrid">
+      <div>
+        <label for="cloudPush">Push-ups</label>
+        <input id="cloudPush"
+          type="number"
+          min="0"
+          placeholder="50">
+      </div>
+
+      <div>
+        <label for="cloudSit">Sit-ups</label>
+        <input id="cloudSit"
+          type="number"
+          min="0"
+          placeholder="55">
+      </div>
+    </div>
+
+    <label for="cloudRun">Run Time (MM:SS)</label>
+    <input id="cloudRun"
+      placeholder="17:30"
+      inputmode="text">
+
+    <label for="cloudPTNotes">Practice Notes</label>
+    <textarea id="cloudPTNotes"
+      placeholder="How did training feel?"></textarea>
+
+    <button class="btn"
+      style="width:100%;margin-top:12px"
+      onclick="submitCloudPTResult()">
+      Save PT Practice Result
+    </button>
+  </div>`;
+}
+
+function renderCloudPTHistory(){
+  const history=ptResults.slice(0,10);
+
+  return `<div class="card">
+    <h3>PT Practice History</h3>
+
+    ${history.length===0
+      ?emptyState('Your practice results will appear here.')
+      :history.map(r=>`
+        <div class="history">
+          <div class="flex">
+            <strong>${esc(formatDate(r.test_date))}</strong>
+            <span class="chip">
+              ${formatSeconds(r.run_seconds)}
+            </span>
+          </div>
+
+          <div class="muted">
+            ${esc(r.pushups)} push-ups ·
+            ${esc(r.situps)} sit-ups
+          </div>
+
+          ${r.notes
+            ?`<div class="muted">${esc(r.notes)}</div>`
+            :''}
+        </div>
+      `).join('')}
+  </div>`;
+}
+
+function renderAchievements(){
+  const automatic=calculateLocalAchievements();
+  const custom=coachAwards;
+
+  return `${sectionHeading(
+    '🏆 Achievement Trophy Case',
+    'Celebrate every milestone.'
+  )}
+
+  <div class="card gold">
+    <div class="flex">
+      <div>
+        <h3>Achievements Unlocked</h3>
+        <div class="muted">
+          Training milestones and special Coach awards.
+        </div>
+      </div>
+      <div class="big" style="font-size:29px;font-weight:850">
+        ${automatic.length+custom.length}
+      </div>
+    </div>
+
+    ${custom.map(a=>`
+      <div class="history">
+        <div style="font-size:25px">
+          ${esc(a.icon||'🏆')}
+        </div>
+        <strong>${esc(a.title)}</strong>
+        ${a.message
+          ?`<div class="muted">${esc(a.message)}</div>`
+          :''}
+        <div class="small muted">
+          Awarded ${esc(formatTimestamp(a.created_at))}
+        </div>
+      </div>
+    `).join('')}
+
+    ${automatic.map(a=>`
+      <div class="history">
+        <div style="font-size:25px">${esc(a.icon)}</div>
+        <strong>${esc(a.title)}</strong>
+        <div class="muted">${esc(a.description)}</div>
+      </div>
+    `).join('')}
+
+    ${automatic.length+custom.length===0
+      ?emptyState('Complete your first workout to start earning achievements.')
+      :''}
+  </div>`;
+}
+
+function renderAthleteAnalytics(){
+  const stats=combinedTrainingAnalytics();
+
+  return `${sectionHeading(
+    '📊 Training Analytics',
+    'Your consistency and progress over time.'
+  )}
+
+  <div class="metricgrid">
+    ${metricCard(
+      'Completed Assignments',
+      stats.assigned.completed,
+      `${stats.assigned.total} assigned`
+    )}
+    ${metricCard(
+      'Assignment Completion',
+      `${stats.assigned.completionPercent}%`
+    )}
+    ${metricCard(
+      'Daily Workouts',
+      stats.local.totalWorkouts
+    )}
+    ${metricCard(
+      'Current Streak',
+      `${stats.local.streak} days`
+    )}
+  </div>
+
+  <div class="card" style="margin-top:13px">
+    <h3>Assignment Progress</h3>
+    ${progressBar(stats.assigned.completionPercent)}
+    <div class="muted">
+      ${stats.assigned.completed} of
+      ${stats.assigned.total} assignments completed
+    </div>
+
+    <h3 style="margin-top:20px">Recent Training</h3>
+    ${recentWorkoutHistory(state,6).map(item=>`
+      <div class="history">
+        <strong>✓ ${esc(item.title)}</strong>
+        <div class="muted">${esc(formatDate(item.date))}</div>
+      </div>
+    `).join('')||
+    emptyState('Complete a daily workout to see your history.')}
+  </div>`;
+}
+
+function renderAthleteHome(){
+  return `
+    ${athleteWelcome()}
+    ${renderAthleteAssignments()}
+    ${sectionHeading('💪 Today’s Workout')}
+    ${renderDailyWorkout()}
+    ${renderHydration()}
+    ${renderAthleteAnalytics()}
+    ${renderAchievements()}
+  `;
+}
+
+function renderAthleteTraining(){
+  return `
+    ${sectionHeading(
+      'Training Center',
+      'Your workouts and assigned sessions.'
+    )}
+    ${renderAthleteAssignments()}
+    ${renderDailyWorkout()}
+    ${renderAthleteAnalytics()}
+  `;
+}
+
+function renderAthletePT(){
+  return `
+    ${renderPTReadiness()}
+    ${renderAchievements()}
+  `;
+}
+
+function renderAthleteProgress(){
+  return `
+    ${renderAthleteAnalytics()}
+    ${renderAchievements()}
+    ${renderHydration()}
+  `;
+}
+
+/*
+ Love Notes will be inserted into the Athlete
+ dashboard by the shared render functions in
+ the remaining parts.
+
+ Keep this file open — do not close <script>
+ or </body> yet.
+*/
+
+/* ================================================
+   PART 6 — COACH DASHBOARD & TRAINING MANAGEMENT
+   ================================================ */
+
+function coachWelcome(){
+  const name=state.coachName||'Coach';
+  const athleteName=athleteData?.name||'your athlete';
+
+  return `<div class="hero">
+    <div class="eyebrow">COACH DASHBOARD</div>
+    <h1>Welcome back, ${esc(name)}.</h1>
+    <p>
+      Your training headquarters for
+      ${esc(athleteName)}.
+    </p>
+    <div class="row" style="margin-top:16px">
+      <span class="pill">💚 Personal Coach</span>
+      <span class="pill">
+        ${coachAthleteId?'✓ Athlete Connected':'○ Not Connected'}
+      </span>
+    </div>
+  </div>`;
+}
+
+function renderCoachConnection(){
+  return `<div class="card">
+    <div class="flex">
+      <div>
+        <h3>🔗 Athlete Connection</h3>
+        <div class="muted">
+          ${coachAthleteId
+            ?'Your Athlete account is linked.'
+            :'Connect an Athlete account to manage training.'}
+        </div>
+      </div>
+      <span class="chip">
+        ${coachAthleteId?'Connected':'Setup'}
+      </span>
+    </div>
+
+    ${!coachAthleteId?`
+      <label for="joinCode">Athlete Invite Code</label>
+      <input id="joinCode"
+        placeholder="Paste his invite code">
+
+      <button class="btn"
+        style="margin-top:12px"
+        onclick="joinAthlete()">
+        Connect Athlete
+      </button>
+    `:''}
+
+    <div class="row" style="margin-top:13px">
+      <button class="btn alt"
+        onclick="refreshAllCoachData()">
+        ↻ Refresh Athlete Data
+      </button>
+    </div>
+  </div>`;
+}
+
+async function refreshAllCoachData(){
+  if(!cloudReady()){
+    alert('Sign in to refresh.');
+    return;
+  }
+
+  try{
+    await refreshCoach();
+    await refreshTrainingData();
+
+    if(typeof refreshLoveNotes==='function'){
+      await refreshLoveNotes();
+    }
+
+    startTrainingRealtime();
+    render();
+
+    alert('Coach dashboard refreshed.');
+  }catch(error){
+    showTrainingError(error);
+  }
+}
+
+function renderCoachAssignmentForm(){
+  return `${sectionHeading(
+    '📋 Assign a Workout',
+    'Create a training session and send it directly to his app.'
+  )}
+
+  <div class="card accent">
+    <h3>New Training Assignment</h3>
+
+    <label for="assignmentTitle">Workout Title</label>
+    <input id="assignmentTitle"
+      maxlength="120"
+      placeholder="Monday · Upper Body + Run">
+
+    <label for="assignmentDate">Scheduled Date</label>
+    <input id="assignmentDate"
+      type="date"
+      value="${dateKey()}">
+
+    <label for="assignmentDetails">Workout Instructions</label>
+    <textarea id="assignmentDetails"
+      maxlength="3000"
+      placeholder="Warm-up: 5 minutes
+Push-ups: 3 sets of 15
+Easy run: 1.5 miles
+Cool-down: 5 minutes"></textarea>
+
+    <button class="btn"
+      style="width:100%;margin-top:14px"
+      onclick="createWorkoutAssignment()"
+      ${!canCoach()?'disabled':''}>
+      + Send Workout to Athlete
+    </button>
+
+    ${!canCoach()?`
+      <p class="muted">
+        Connect your Athlete account to enable assignments.
+      </p>
+    `:''}
+  </div>`;
+}
+
+function renderCoachAssignments(){
+  const list=workoutAssignmentList(30);
+  const stats=assignmentStats();
+
+  return `${sectionHeading(
+    '🗓️ Assigned Workout Schedule',
+    'Review completed and upcoming workouts.'
+  )}
+
+  <div class="metricgrid">
+    ${metricCard('Total Assigned',stats.total)}
+    ${metricCard('Completed',stats.completed)}
+    ${metricCard('Upcoming',stats.upcoming)}
+    ${metricCard('Overdue',stats.overdue)}
+  </div>
+
+  <div class="card" style="margin-top:13px">
+    <h3>Workout Completion</h3>
+    ${progressBar(stats.completionPercent)}
+    <div class="muted">
+      ${stats.completionPercent}% of assigned workouts completed
+    </div>
+
+    ${list.length===0
+      ?emptyState('Your assigned workouts will appear here.')
+      :list.map(a=>`
+        <div class="exercise">
+          <div class="flex">
+            <strong>${esc(a.title)}</strong>
+            <span class="chip">
+              ${a.status==='completed'
+                ?'✓ Complete'
+                :'Scheduled'}
+            </span>
+          </div>
+
+          <div class="muted">
+            ${esc(formatDate(a.scheduled_date))}
+          </div>
+
+          ${a.details
+            ?`<p class="muted" style="white-space:pre-wrap">${esc(a.details)}</p>`
+            :''}
+
+          ${a.completed_at
+            ?`<div class="small muted">
+              Completed ${esc(formatTimestamp(a.completed_at))}
+            </div>`
+            :''}
+
+          <div class="row" style="margin-top:10px">
+            ${a.status==='completed'
+              ?`<button class="btn alt"
+                onclick="reopenAssignedWorkout('${esc(a.id)}')">
+                Mark Incomplete
+              </button>`
+              :''}
+
+            <button class="btn alt"
+              onclick="deleteAssignedWorkout('${esc(a.id)}')">
+              Delete
+            </button>
+          </div>
+        </div>
+      `).join('')}
+  </div>`;
+}
+
+function renderCoachAthleteOverview(){
+  const data=athleteData||null;
+
+  if(!data){
+    return `${sectionHeading(
+      '🏃 Athlete Overview',
+      'His synchronized training progress.'
+    )}
+
+    <div class="card">
+      ${emptyState(
+        coachAthleteId
+          ?'No Athlete training profile is available yet. Ask him to sign in and sync.'
+          :'Connect his account to view his training.'
+      )}
+    </div>`;
+  }
+
+  const stats=trainingAnalytics(data);
+  const water=waterToday(data);
+  const goal=Number(data.waterGoalMl)||2500;
+  const readiness=ptReadiness(data);
+
+  return `${sectionHeading(
+    '🏃 Athlete Overview',
+    'A live view of his training progress.'
+  )}
+
+  <div class="card blue">
+    <div class="flex">
+      <div>
+        <div class="eyebrow" style="color:#56816b">
+          YOUR ATHLETE
+        </div>
+        <h3>${esc(data.name||'Athlete')}</h3>
+      </div>
+      <span class="chip">Cloud Profile</span>
+    </div>
+
+    <div class="metricgrid" style="margin-top:14px">
+      ${metricCard(
+        'Daily Workouts',
+        stats.totalWorkouts
+      )}
+      ${metricCard(
+        'This Week',
+        stats.workoutsThisWeek
+      )}
+      ${metricCard(
+        'Current Streak',
+        `${stats.streak} days`
+      )}
+      ${metricCard(
+        'PT Sessions',
+        stats.ptSessions
+      )}
+    </div>
+
+    <h3 style="margin-top:20px">Hydration Today</h3>
+    <div class="muted">
+      ${water.toLocaleString()} /
+      ${goal.toLocaleString()} mL
+    </div>
+    ${progressBar(Math.round(water/goal*100))}
+
+    <h3 style="margin-top:20px">Run Target</h3>
+    <div class="muted">
+      ${esc(readiness.label)}
+    </div>
+    ${progressBar(readiness.progress)}
+  </div>`;
+}
+
+function renderCoachPTAnalytics(){
+  const stats=cloudPTAnalytics();
+  const results=ptResults.slice(0,15);
+
+  return `${sectionHeading(
+    '🎯 PT Performance',
+    'Monitor his practice results and personal records.'
+  )}
+
+  <div class="metricgrid">
+    ${metricCard(
+      'Practice Tests',
+      stats.sessions
+    )}
+    ${metricCard(
+      'Fastest Run',
+      stats.bestRun!==null
+        ?formatSeconds(stats.bestRun)
+        :'—'
+    )}
+    ${metricCard(
+      'Most Push-ups',
+      stats.bestPush??'—'
+    )}
+    ${metricCard(
+      'Most Sit-ups',
+      stats.bestSit??'—'
+    )}
+  </div>
+
+  <div class="card" style="margin-top:13px">
+    <h3>Recent PT Results</h3>
+
+    ${results.length===0
+      ?emptyState('His PT results will appear here once he records them.')
+      :results.map(r=>`
+        <div class="history">
+          <div class="flex">
+            <strong>${esc(formatDate(r.test_date))}</strong>
+            <span class="chip">
+              ${formatSeconds(r.run_seconds)}
+            </span>
+          </div>
+
+          <div class="muted">
+            ${esc(r.pushups)} push-ups ·
+            ${esc(r.situps)} sit-ups
+          </div>
+
+          ${r.notes
+            ?`<p class="muted">${esc(r.notes)}</p>`
+            :''}
+        </div>
+      `).join('')}
+  </div>
+
+  <div class="notice">
+    These are training measurements, not official
+    USAF PT scores. Official scoring requires the
+    appropriate current standards.
+  </div>`;
+}
+
+function renderCoachAwardForm(){
+  return `${sectionHeading(
+    '🏆 Give Him an Achievement',
+    'Celebrate his effort with a personalized award.'
+  )}
+
+  <div class="card gold">
+    <h3>New Coach Award</h3>
+
+    <label for="awardIcon">Choose an Icon</label>
+    <select id="awardIcon">
+      <option value="🏆">🏆 Trophy</option>
+      <option value="💪">💪 Strength</option>
+      <option value="🔥">🔥 Consistency</option>
+      <option value="🥇">🥇 Gold Medal</option>
+      <option value="❤️">❤️ Made With Love</option>
+      <option value="⭐">⭐ Superstar</option>
+      <option value="🎯">🎯 Goal Reached</option>
+    </select>
+
+    <label for="awardTitle">Achievement Title</label>
+    <input id="awardTitle"
+      maxlength="120"
+      placeholder="I'm So Proud of You!">
+
+    <label for="awardMessage">Personal Message</label>
+    <textarea id="awardMessage"
+      maxlength="1000"
+      placeholder="You've been showing up and putting in the work. I see you, and I'm so proud of you!"></textarea>
+
+    <button class="btn goldbtn"
+      style="width:100%;margin-top:14px"
+      onclick="sendCoachAward()"
+      ${!canCoach()?'disabled':''}>
+      🏆 Send Achievement
+    </button>
+  </div>`;
+}
+
+function renderCoachAwards(){
+  return `<div class="card">
+    <h3>Achievements You've Awarded</h3>
+
+    ${coachAwards.length===0
+      ?emptyState('Your personalized awards will appear here.')
+      :coachAwards.map(a=>`
+        <div class="history">
+          <div style="font-size:26px">
+            ${esc(a.icon||'🏆')}
+          </div>
+
+          <strong>${esc(a.title)}</strong>
+
+          ${a.message
+            ?`<div class="muted">${esc(a.message)}</div>`
+            :''}
+
+          <div class="small muted">
+            ${esc(formatTimestamp(a.created_at))}
+          </div>
+        </div>
+      `).join('')}
+  </div>`;
+}
+
+function renderCoachAnalytics(){
+  const stats=combinedTrainingAnalytics();
+
+  return `${sectionHeading(
+    '📊 Coach Training Analytics',
+    'Understand his consistency and training trends.'
+  )}
+
+  <div class="metricgrid">
+    ${metricCard(
+      'Assignment Completion',
+      `${stats.assigned.completionPercent}%`
+    )}
+    ${metricCard(
+      'Assigned Workouts',
+      stats.assigned.total
+    )}
+    ${metricCard(
+      'Overdue Workouts',
+      stats.assigned.overdue
+    )}
+    ${metricCard(
+      'Coach Awards',
+      stats.coachAwards
+    )}
+  </div>
+
+  <div class="card" style="margin-top:13px">
+    <h3>Workout Completion Rate</h3>
+    ${progressBar(stats.assigned.completionPercent)}
+
+    <div class="muted">
+      ${stats.assigned.completed} of
+      ${stats.assigned.total} assignments completed.
+    </div>
+
+    <h3 style="margin-top:20px">Training Summary</h3>
+
+    <div class="history">
+      <strong>Daily Training Sessions</strong>
+      <div class="muted">
+        ${stats.local.totalWorkouts} completed
+      </div>
+    </div>
+
+    <div class="history">
+      <strong>Current Workout Streak</strong>
+      <div class="muted">
+        ${stats.local.streak} days
+      </div>
+    </div>
+
+    <div class="history">
+      <strong>PT Practice Tests</strong>
+      <div class="muted">
+        ${stats.cloudPT.sessions} cloud records
+      </div>
+    </div>
+
+    <div class="history">
+      <strong>Achievements</strong>
+      <div class="muted">
+        ${stats.totalAchievements} total badges
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderCoachNotes(){
+  return `${sectionHeading(
+    '📝 Private Coach Notes',
+    'Only your Coach account should access these notes.'
+  )}
+
+  <div class="card">
+    <textarea id="coachNotes"
+      placeholder="Training observations, goals, upcoming plans...">${esc(state.coachNotes||'')}</textarea>
+
+    <button class="btn"
+      style="margin-top:12px;width:100%"
+      onclick="saveCoachNote()">
+      Save Private Notes
+    </button>
+
+    <p class="muted">
+      Coach Notes are separate from Love Notes
+      and Athlete workout assignments.
+    </p>
+  </div>`;
+}
+
+function renderCoachHome(){
+  return `
+    ${coachWelcome()}
+    ${renderCoachConnection()}
+    ${renderCoachAthleteOverview()}
+    ${renderCoachAnalytics()}
+    ${renderCoachAssignmentForm()}
+    ${renderCoachAssignments()}
+    ${renderCoachPTAnalytics()}
+    ${renderCoachAwardForm()}
+    ${renderCoachAwards()}
+    ${renderCoachNotes()}
+  `;
+}
+
+function renderCoachTraining(){
+  return `
+    ${sectionHeading(
+      'Coach Training Center',
+      'Manage his workout assignments.'
+    )}
+    ${renderCoachAssignmentForm()}
+    ${renderCoachAssignments()}
+    ${renderCoachAthleteOverview()}
+  `;
+}
+
+function renderCoachPT(){
+  return `
+    ${renderCoachPTAnalytics()}
+    ${renderCoachAnalytics()}
+    ${renderCoachAwardForm()}
+  `;
+}
+
+function renderCoachProgress(){
+  return `
+    ${renderCoachAnalytics()}
+    ${renderCoachAthleteOverview()}
+    ${renderCoachAwards()}
+    ${renderCoachNotes()}
+  `;
+}
+
+/*
+ Part 7 will integrate Love Notes with these
+ dashboards and handle account settings.
+
+ Part 8 will connect the navigation, startup,
+ and automatic cloud synchronization.
+
+ Do not close the script tag yet.
+*/
+
+/* ================================================
+   PART 7 — LOVE NOTES & ACCOUNT SETTINGS
+   ================================================ */
+
+let loveNotes=[];
+let loveError='';
+let loveExpanded=false;
+let loveBusy=false;
+
+function lovePartnerId(){
+  if(!currentUser)return null;
+
+  return state.role==='coach'
+    ?coachAthleteId
+    :currentUser.id;
+}
+
+function loveNotesView(){
+  const signed=cloudReady();
+  const isCoach=state.role==='coach';
+
+  const unread=loveNotes.filter(m=>
+    m.recipient_id===currentUser?.id&&!m.read_at
+  ).length;
+
+  const visible=loveExpanded
+    ?loveNotes
+    :loveNotes.slice(0,3);
+
+  return `
+    <h2>
+      💌 Love Notes
+      ${unread
+        ?`<span class="chip">❤️ ${unread} new</span>`
+        :''}
+    </h2>
+
+    <div class="card"
+      style="border-color:#e8d6cb;background:#fffaf7">
+
+      <h3>
+        ${isCoach
+          ?'Send Him Some Love ❤️'
+          :'A Message From Leah ❤️'}
+      </h3>
+
+      <p class="muted">
+        A little encouragement, just for the two of you.
+      </p>
+
+      ${signed
+        ?lovePartnerId()
+          ?`
+            <label for="loveMessage">
+              ${isCoach
+                ?'Your message to him'
+                :'Send Leah some love'}
+            </label>
+
+            <textarea
+              id="loveMessage"
+              maxlength="1500"
+              placeholder="${isCoach
+                ?'I’m so proud of you, handsome ❤️'
+                :'Love you, baby ❤️'}"></textarea>
+
+            <div class="row" style="margin-top:9px">
+              <button class="btn"
+                onclick="sendLoveNote()"
+                ${loveBusy?'disabled':''}>
+                💌 Send Love
+              </button>
+
+              <button class="btn alt"
+                onclick="sendQuickLove()"
+                ${loveBusy?'disabled':''}>
+                ❤️ Send Love Back
+              </button>
+
+              <button class="btn alt"
+                onclick="refreshLoveNotes().then(render)">
+                ↻ Refresh
+              </button>
+            </div>
+          `
+          :`
+            <p class="notice">
+              ${isCoach
+                ?'Connect his Athlete account to exchange Love Notes.'
+                :'Sign in and connect your Coach to exchange Love Notes.'}
+            </p>
+          `
+        :`
+          <p class="notice">
+            Sign in under Settings to send and read
+            your private Love Notes.
+          </p>
+        `
+      }
+
+      ${loveError
+        ?`<p class="notice">${esc(loveError)}</p>`
+        :''}
+
+      <div style="margin-top:14px">
+        ${visible.length
+          ?visible.map(m=>`
+            <div class="history">
+              <div class="flex">
+                <b>
+                  ${m.sender_id===currentUser?.id
+                    ?'You'
+                    :isCoach
+                      ?'Your Athlete'
+                      :'Leah'}
+                  ${m.sender_id===currentUser?.id
+                    ?'💚'
+                    :'❤️'}
+                </b>
+
+                <small class="muted">
+                  ${esc(formatTimestamp(m.created_at))}
+                </small>
+              </div>
+
+              <p style="
+                white-space:pre-wrap;
+                overflow-wrap:anywhere;
+                margin:8px 0">
+                ${esc(m.body)}
+              </p>
+
+              ${m.recipient_id===currentUser?.id&&!m.read_at
+                ?'<span class="chip">New ❤️</span>'
+                :''}
+            </div>
+          `).join('')
+          :`
+            <p class="muted">
+              No Love Notes yet. Send the first one!
+            </p>
+          `}
+      </div>
+
+      ${loveNotes.length>3
+        ?`
+          <button class="btn alt"
+            style="margin-top:10px"
+            onclick="loveExpanded=!loveExpanded;render()">
+            ${loveExpanded
+              ?'Show Less'
+              :'View All '+loveNotes.length+' Messages'}
+          </button>
+        `
+        :''}
+    </div>
+  `;
+}
+
+/* --------------------------------
+   LOAD PRIVATE LOVE NOTES
+   -------------------------------- */
+
+async function refreshLoveNotes(){
+  if(!cloudReady()){
+    loveNotes=[];
+    return;
+  }
+
+  const athleteId=lovePartnerId();
+
+  if(!athleteId){
+    loveNotes=[];
+    return;
+  }
+
+  try{
+    const {data,error}=await client
+      .from('pacesetter_love_notes')
+      .select(
+        'id,athlete_id,sender_id,recipient_id,body,created_at,read_at'
+      )
+      .eq('athlete_id',athleteId)
+      .order('created_at',{
+        ascending:false
+      })
+      .limit(100);
+
+    if(error)throw error;
+
+    loveNotes=data||[];
+    loveError='';
+
+    const unread=loveNotes
+      .filter(m=>
+        m.recipient_id===currentUser.id&&!m.read_at
+      )
+      .map(m=>m.id);
+
+    if(unread.length){
+      const {error:readError}=await client
+        .from('pacesetter_love_notes')
+        .update({
+          read_at:new Date().toISOString()
+        })
+        .in('id',unread)
+        .eq('recipient_id',currentUser.id);
+
+      if(readError){
+        console.warn(
+          'Love Notes read receipt:',
+          readError.message
+        );
+      }
+    }
+  }catch(error){
+    loveError=
+      'Love Notes could not be loaded: '+
+      error.message;
+
+    console.warn(error);
+  }
+}
+
+/* --------------------------------
+   SEND LOVE NOTES
+   -------------------------------- */
+
+async function sendLoveNote(message){
+  if(loveBusy||!cloudReady()){
+    alert('Please sign in first.');
+    return;
+  }
+
+  const athleteId=lovePartnerId();
+
+  if(!athleteId){
+    alert('Connect the Athlete account first.');
+    return;
+  }
+
+  const body=String(
+    message??el('loveMessage')?.value??''
+  ).trim();
+
+  if(!body||body.length>1500){
+    alert('Write a message of up to 1,500 characters.');
+    return;
+  }
+
+  loveBusy=true;
+
+  try{
+    let recipientId;
+
+    if(state.role==='coach'){
+      recipientId=athleteId;
+    }else{
+      const {data:links,error:lookupError}=await client
+        .from('pacesetter_coach_access')
+        .select('coach_id')
+        .eq('athlete_id',currentUser.id)
+        .limit(1);
+
+      if(lookupError)throw lookupError;
+
+      recipientId=links?.[0]?.coach_id;
+
+      if(!recipientId){
+        throw Error(
+          'No Coach is linked to your account yet.'
+        );
+      }
+    }
+
+    const {error}=await client
+      .from('pacesetter_love_notes')
+      .insert({
+        athlete_id:athleteId,
+        sender_id:currentUser.id,
+        recipient_id:recipientId,
+        body
+      });
+
+    if(error)throw error;
+
+    await refreshLoveNotes();
+    render();
+  }catch(error){
+    alert(
+      'Could not send Love Note: '+error.message
+    );
+  }finally{
+    loveBusy=false;
+  }
+}
+
+function sendQuickLove(){
+  const message=state.role==='coach'
+    ?'Sending you all my love ❤️'
+    :'Sending you love back, baby ❤️';
+
+  return sendLoveNote(message);
+}
+
+/* --------------------------------
+   LOVE NOTES NOTIFICATION COUNT
+   -------------------------------- */
+
+function unreadLoveNoteCount(){
+  return loveNotes.filter(m=>
+    m.recipient_id===currentUser?.id&&!m.read_at
+  ).length;
+}
+
+function renderNotificationCenter(){
+  const unread=unreadLoveNoteCount();
+
+  const pending=assignments.filter(a=>
+    a.status!=='completed'
+  ).length;
+
+  const awards=coachAwards.length;
+
+  return `${sectionHeading(
+    '🔔 Notifications',
+    'Your latest training and personal updates.'
+  )}
+
+  <div class="card">
+    <div class="history">
+      <strong>💌 Love Notes</strong>
+      <div class="muted">
+        ${unread
+          ?`${unread} unread message(s)`
+          :'Your messages are up to date.'}
+      </div>
+    </div>
+
+    <div class="history">
+      <strong>📋 Workout Assignments</strong>
+      <div class="muted">
+        ${pending} pending assignment(s)
+      </div>
+    </div>
+
+    <div class="history">
+      <strong>🏆 Coach Awards</strong>
+      <div class="muted">
+        ${awards} achievement award(s)
+      </div>
+    </div>
+
+    <div class="history">
+      <strong>📱 iPhone Notifications</strong>
+      <div class="muted">
+        ${esc(notificationAvailabilityText())}
+      </div>
+
+      <button class="btn alt"
+        style="margin-top:10px"
+        onclick="requestNotificationPermission()">
+        Check Notification Permission
+      </button>
+    </div>
+
+    <p class="muted">
+      Updates refresh while PACESETTER is open.
+      Background iPhone push notifications require
+      additional server-side setup.
+    </p>
+  </div>`;
+}
+
+/* --------------------------------
+   ACCOUNT & CLOUD SETTINGS
+   -------------------------------- */
+
+function renderCloudSettings(){
+  const signed=cloudReady();
+
+  return `${sectionHeading(
+    '☁️ Account & Cloud Sync',
+    'Keep your PACESETTER progress connected.'
+  )}
+
+  <div class="card">
+    ${signed
+      ?`
+        <h3>✓ Connected to Supabase</h3>
+
+        <p class="muted">
+          Signed in as:
+          <strong>${esc(currentUser.email||'Account')}</strong>
+        </p>
+
+        <div class="row">
+          <button class="btn"
+            onclick="syncNow()">
+            ↻ Sync Now
+          </button>
+
+          <button class="btn alt"
+            onclick="signOut()">
+            Sign Out
+          </button>
+        </div>
+      `
+      :`
+        <h3>Sign In to PACESETTER</h3>
+
+        <label for="cloudEmail">Email Address</label>
+        <input id="cloudEmail"
+          type="email"
+          autocomplete="email"
+          placeholder="you@example.com">
+
+        <label for="cloudPassword">Password</label>
+        <input id="cloudPassword"
+          type="password"
+          autocomplete="current-password"
+          placeholder="Your password">
+
+        <div class="row" style="margin-top:14px">
+          <button class="btn"
+            onclick="authCloud('signin')">
+            Sign In
+          </button>
+
+          <button class="btn alt"
+            onclick="authCloud('signup')">
+            Create Account
+          </button>
+        </div>
+      `
+    }
+
+    <p class="muted" id="cloudStatus"
+      style="margin-top:12px">
+      ${signed
+        ?'Your account is connected.'
+        :'Sign in to enable cloud syncing.'}
+    </p>
+
+    <div class="notice">
+      PACESETTER automatically checks for updates
+      every two minutes while the app is open
+      and visible.
+    </div>
+  </div>`;
+}
+
+function renderAthleteSettings(){
+  return `${sectionHeading(
+    '⚙️ Athlete Settings',
+    'Personalize your training experience.'
+  )}
+
+  <div class="card">
+    <label for="athleteNameInput">Athlete Name</label>
+    <input id="athleteNameInput"
+      value="${esc(state.name||'Athlete')}"
+      maxlength="80">
+
+    <button class="btn"
+      style="margin-top:12px"
+      onclick="saveAthleteName()">
+      Save Name
+    </button>
+  </div>
+
+  <div class="card">
+    <h3>Connect Your Coach</h3>
+    <p class="muted">
+      Generate an invitation code and share it
+      privately with Leah so she can see your
+      training progress.
+    </p>
+
+    <button class="btn"
+      onclick="createInvite()">
+      Generate Invite Code
+    </button>
+
+    <p id="inviteCode"
+      style="
+        font-size:23px;
+        font-weight:850;
+        letter-spacing:3px;
+        overflow-wrap:anywhere">
+    </p>
+  </div>
+
+  ${renderCloudSettings()}`;
+}
+
+function saveAthleteName(){
+  const name=(el('athleteNameInput')?.value||'').trim();
+
+  if(!name){
+    alert('Enter a name.');
+    return;
+  }
+
+  state.name=name.slice(0,80);
+
+  queueSync();
+  render();
+}
+
+function renderCoachSettings(){
+  return `${sectionHeading(
+    '⚙️ Coach Settings',
+    'Manage your account and Athlete connection.'
+  )}
+
+  <div class="card">
+    <label for="coachNameInput">Coach Name</label>
+    <input id="coachNameInput"
+      value="${esc(state.coachName||'Coach')}"
+      maxlength="80">
+
+    <button class="btn"
+      style="margin-top:12px"
+      onclick="saveCoachName()">
+      Save Coach Name
+    </button>
+  </div>
+
+  ${renderCoachConnection()}
+
+  ${renderCloudSettings()}`;
+}
+
+function saveCoachName(){
+  const name=(el('coachNameInput')?.value||'').trim();
+
+  if(!name){
+    alert('Enter a name.');
+    return;
+  }
+
+  state.coachName=name.slice(0,80);
+
+  saveAccountPrefs();
+  save();
+  render();
+}
+
+/* --------------------------------
+   SHARED LOVE NOTES SCREEN
+   -------------------------------- */
+
+function renderLoveNotesScreen(){
+  return `
+    ${sectionHeading(
+      'A Little Love, Just for Us',
+      'Private messages between Coach and Athlete.'
+    )}
+
+    ${loveNotesView()}
+
+    <div class="card gold">
+      <h3>❤️ A Reminder</h3>
+      <p class="muted">
+        Training is about showing up, doing your best,
+        and knowing someone is cheering you on.
+      </p>
+    </div>
+  `;
+}
+
+/*
+ Part 8 will connect all dashboards, navigation,
+ Love Notes, settings, and startup.
+
+ Do not close the script or HTML document yet.
+*/
+
+/* ================================================
+   PART 8 — NAVIGATION, RENDERING & APP STARTUP
+   ================================================ */
+
+const APP_TABS=[
+  {id:'home',icon:'🏠',label:'Home'},
+  {id:'training',icon:'💪',label:'Training'},
+  {id:'pt',icon:'🎯',label:'PT'},
+  {id:'progress',icon:'📊',label:'Progress'},
+  {id:'love',icon:'💌',label:'Love'},
+  {id:'settings',icon:'⚙️',label:'Settings'}
+];
+
+let renderScheduled=false;
+let appStarted=false;
+
+function navigate(tab){
+  const valid=APP_TABS.some(item=>item.id===tab);
+
+  state.tab=valid?tab:'home';
+  save();
+
+  render();
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+}
+
+function renderNavigation(){
+  const nav=el('nav');
+  if(!nav)return;
+
+  nav.innerHTML=APP_TABS.map(item=>`
+    <button
+      type="button"
+      class="${state.tab===item.id?'active':''}"
+      onclick="navigate('${item.id}')"
+      aria-label="${esc(item.label)}"
+      aria-current="${state.tab===item.id?'page':'false'}">
+      <span>${item.icon}</span>
+      ${esc(item.label)}
+    </button>
+  `).join('');
+}
+
+function renderAthleteScreen(){
+  switch(state.tab){
+    case 'training':
+      return renderAthleteTraining();
+
+    case 'pt':
+      return renderAthletePT();
+
+    case 'progress':
+      return renderAthleteProgress();
+
+    case 'love':
+      return renderLoveNotesScreen();
+
+    case 'settings':
+      return renderAthleteSettings();
+
+    case 'home':
+    default:
+      return renderAthleteHome();
+  }
+}
+
+function renderCoachScreen(){
+  switch(state.tab){
+    case 'training':
+      return renderCoachTraining();
+
+    case 'pt':
+      return renderCoachPT();
+
+    case 'progress':
+      return renderCoachProgress();
+
+    case 'love':
+      return renderLoveNotesScreen();
+
+    case 'settings':
+      return renderCoachSettings();
+
+    case 'home':
+    default:
+      return renderCoachHome();
+  }
+}
+
+function render(){
+  const app=el('app');
+  if(!app)return;
+
+  try{
+    const coach=state.role==='coach';
+
+    const modeButton=el('modeBtn');
+
+    if(modeButton){
+      modeButton.textContent=coach
+        ?'💚 Coach'
+        :'🏃 Athlete';
+    }
+
+    app.innerHTML=coach
+      ?renderCoachScreen()
+      :renderAthleteScreen();
+
+    renderNavigation();
+
+  }catch(error){
+    console.error(
+      'PACESETTER render error:',
+      error
+    );
+
+    app.innerHTML=`
+      <div class="card">
+        <h2>Something went wrong</h2>
+        <p class="muted">
+          PACESETTER could not load this screen.
+          Your locally saved training data has
+          not been intentionally deleted.
+        </p>
+
+        <p class="notice">
+          ${esc(error.message)}
+        </p>
+
+        <button class="btn"
+          onclick="state.tab='home';save();render()">
+          Return Home
+        </button>
+      </div>
+    `;
+
+    renderNavigation();
+  }
+}
+
+function scheduleRender(){
+  if(renderScheduled)return;
+
+  renderScheduled=true;
+
+  requestAnimationFrame(()=>{
+    renderScheduled=false;
+    render();
+  });
+}
+
+/* --------------------------------
+   ACCOUNT AND ROLE REFRESH
+   -------------------------------- */
+
+async function refreshCurrentRole(){
+  if(!cloudReady())return;
+
+  try{
+    if(state.role==='coach'){
+      await refreshCoach();
+    }else{
+      await loadOwnProfile();
+    }
+
+    await refreshTrainingData();
+    await refreshLoveNotes();
+
+    startTrainingRealtime();
+
+    scheduleRender();
+  }catch(error){
+    console.warn(
+      'Role refresh failed:',
+      error.message
+    );
+  }
+}
+
+/*
+ Wrap the earlier role-switch function so that
+ training data refreshes when the user switches
+ between Coach and Athlete views.
+*/
+
+const originalToggleRole=toggleRole;
+
+toggleRole=function(){
+  stopTrainingRealtime();
+
+  assignments=[];
+  ptResults=[];
+  coachAwards=[];
+  loveNotes=[];
+
+  originalToggleRole();
+
+  if(cloudReady()){
+    refreshCurrentRole();
+  }
+};
+
+/* --------------------------------
+   CLOUD SESSION STARTUP
+   -------------------------------- */
+
+async function startPacesetter(){
+  if(appStarted)return;
+
+  appStarted=true;
+
+  render();
+
+  if(!initCloud()){
+    console.warn(
+      'Supabase unavailable. Local features remain accessible.'
+    );
+    return;
+  }
+
+  try{
+    await restoreCloud();
+
+    if(cloudReady()){
+      await initializeTrainingFeatures();
+      await refreshLoveNotes();
+    }
+
+    render();
+
+  }catch(error){
+    console.error(
+      'PACESETTER startup failed:',
+      error
+    );
+
+    render();
+  }
+}
+
+/* --------------------------------
+   EXTEND LOGIN INITIALIZATION
+   -------------------------------- */
+
+/*
+ The original activateSession function handles
+ authentication and profile loading.
+
+ This wrapper also loads assignments, PT results,
+ Coach awards, and Love Notes after sign-in.
+*/
+
+const originalActivateSession=activateSession;
+
+activateSession=async function(user){
+  await originalActivateSession(user);
+
+  if(cloudReady()){
+    try{
+      await initializeTrainingFeatures();
+      await refreshLoveNotes();
+      render();
+    }catch(error){
+      console.warn(
+        'Training initialization:',
+        error.message
+      );
+    }
+  }
+};
+
+/* --------------------------------
+   EXTEND AUTOMATIC SYNC
+   -------------------------------- */
+
+const originalSyncNowSilent=syncNowSilent;
+
+syncNowSilent=async function(){
+  await originalSyncNowSilent();
+
+  if(cloudReady()){
+    try{
+      await refreshTrainingData();
+      await refreshLoveNotes();
+      scheduleRender();
+    }catch(error){
+      console.warn(
+        'Extended automatic sync:',
+        error.message
+      );
+    }
+  }
+};
+
+/* --------------------------------
+   RESTORE WHEN APP RETURNS TO VIEW
+   -------------------------------- */
+
+window.addEventListener('focus',()=>{
+  if(cloudReady()){
+    syncNowSilent();
+  }
+});
+
+window.addEventListener('online',()=>{
+  if(cloudReady()){
+    syncNowSilent();
+  }
+});
+
+/* --------------------------------
+   SAFETY: CLEAN UP ON SIGN OUT
+   -------------------------------- */
+
+const originalSignOut=signOut;
+
+signOut=async function(){
+  stopTrainingRealtime();
+
+  await originalSignOut();
+
+  assignments=[];
+  ptResults=[];
+  coachAwards=[];
+  loveNotes=[];
+
+  render();
+};
+
+/* --------------------------------
+   START THE APP
+   -------------------------------- */
+
+if(document.readyState==='loading'){
+  document.addEventListener(
+    'DOMContentLoaded',
+    startPacesetter,
+    {once:true}
+  );
+}else{
+  startPacesetter();
+}
+
+</script>
+</body>
+</html>
