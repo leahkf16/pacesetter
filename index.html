@@ -3830,6 +3830,558 @@ if(document.readyState==='loading'){
   startPacesetter();
 }
 
+
+/* ================================================
+   PACESETTER PERSONALITY + EXERCISE GUIDE
+   Restores workout skip roasts, hydration jokes,
+   and adds detailed exercise instructions.
+   No additional Supabase tables required.
+   ================================================ */
+
+const PACE_EXERCISE_GUIDES = {
+  'Push-ups': {
+    setup: 'Start in a high plank. Put your hands slightly wider than shoulder-width apart. Keep your legs extended, feet on the floor, and your body in one straight line from head to heels.',
+    steps: [
+      'Tighten your stomach and glutes so your hips do not sag.',
+      'Bend your elbows and slowly lower your chest toward the floor.',
+      'Keep your elbows angled slightly backward instead of pointing straight out to the sides.',
+      'Lower as far as you can with good control.',
+      'Push through your palms until your arms straighten again.',
+      'That is one repetition. Repeat until you finish the prescribed number.'
+    ],
+    breathing: 'Breathe in while lowering and breathe out while pushing upward.',
+    avoid: 'Do not let your lower back sag, lift your hips too high, or shorten every repetition just to increase the number.',
+    easier: 'Try incline push-ups with your hands on a sturdy bench or counter.',
+    video: 'https://www.acefitness.org/resources/everyone/exercise-library/'
+  },
+
+  'Bodyweight squats': {
+    setup: 'Stand with your feet approximately shoulder-width apart. Point your toes slightly outward if that feels comfortable. Keep your chest up and your feet flat.',
+    steps: [
+      'Brace your stomach gently.',
+      'Push your hips backward as if sitting in a chair.',
+      'Bend your knees and lower yourself between your legs.',
+      'Keep your knees moving in the same direction as your toes.',
+      'Lower only as far as you can while maintaining control.',
+      'Push through your feet to stand upright.',
+      'Straightening back to standing completes one repetition.'
+    ],
+    breathing: 'Breathe in on the way down and out while standing.',
+    avoid: 'Do not collapse your knees inward, round your back excessively, or raise your heels off the floor.',
+    easier: 'Use a sturdy chair behind you and lightly touch it before standing.',
+    video: 'https://www.acefitness.org/resources/everyone/exercise-library/'
+  },
+
+  'Plank': {
+    setup: 'Lie face down, then place your forearms on the floor with your elbows directly below your shoulders. Extend your legs behind you.',
+    steps: [
+      'Lift your hips and stomach off the floor.',
+      'Support your weight on your forearms and toes.',
+      'Keep your head, shoulders, hips, and heels aligned.',
+      'Tighten your stomach and glutes.',
+      'Hold this position for the prescribed time.',
+      'Lower yourself gently when the time is finished.'
+    ],
+    breathing: 'Continue breathing normally. Do not hold your breath.',
+    avoid: 'Do not let your hips sag or raise your butt too high.',
+    easier: 'Place your knees on the floor while maintaining a straight line from shoulders to knees.',
+    video: 'https://www.acefitness.org/resources/everyone/exercise-library/'
+  },
+
+  'Glute bridges': {
+    setup: 'Lie on your back with your knees bent, feet flat on the floor, and arms resting beside you.',
+    steps: [
+      'Position your feet about hip-width apart.',
+      'Tighten your stomach gently.',
+      'Push through your heels and squeeze your glutes.',
+      'Lift your hips until your shoulders, hips, and knees form a relatively straight line.',
+      'Pause briefly at the top.',
+      'Slowly lower your hips to the floor.',
+      'That completes one repetition.'
+    ],
+    breathing: 'Breathe out as you lift and in as you lower.',
+    avoid: 'Do not arch your lower back excessively or push your hips higher than you can control.',
+    easier: 'Lift your hips a smaller distance and build up gradually.',
+    video: 'https://www.acefitness.org/resources/everyone/exercise-library/'
+  },
+
+  'Dead bugs': {
+    setup: 'Lie on your back. Raise both arms toward the ceiling. Lift your legs so your hips and knees are bent approximately 90 degrees.',
+    steps: [
+      'Gently brace your stomach and keep your lower back stable against the floor.',
+      'Slowly extend your right arm backward and your left leg forward.',
+      'Do not let your lower back arch.',
+      'Bring your arm and leg back to the starting position.',
+      'Repeat with your left arm and right leg.',
+      'Complete the prescribed repetitions on each side.'
+    ],
+    breathing: 'Exhale as you extend your arm and leg. Inhale as you return.',
+    avoid: 'Do not move quickly or let your back arch away from the floor.',
+    easier: 'Move only your legs or only your arms until you can coordinate both.',
+    video: 'https://www.nasm.org/resource-center/exercise-library/dead-bug'
+  },
+
+  'Dynamic warm-up': {
+    setup: 'Find a safe, open area where you can move comfortably before your run.',
+    steps: [
+      'Walk briskly for approximately one minute.',
+      'March in place while gently swinging your arms.',
+      'Perform controlled leg swings while holding a stable support.',
+      'Do a few walking lunges or shallow squats.',
+      'Add light jogging or easy high-knee marching.',
+      'Gradually increase your movement speed until you feel ready to run.'
+    ],
+    breathing: 'Breathe naturally and gradually increase your effort.',
+    avoid: 'Do not start with an all-out sprint or force painful stretches.',
+    easier: 'Use brisk walking and gentle marching.',
+    video: 'https://www.youtube.com/watch?v=WxKq8548p94'
+  },
+
+  'Running session': {
+    setup: 'Wear comfortable running shoes. Choose a safe route, track, or treadmill. Begin with a warm-up.',
+    steps: [
+      'Start at a comfortable jogging pace.',
+      'Keep your shoulders relaxed and look ahead.',
+      'Let your arms swing naturally near your sides.',
+      'Take comfortable steps rather than forcing a long stride.',
+      'For an easy run, maintain a pace where you can speak in sentences.',
+      'For intervals, follow the assigned faster and recovery periods.',
+      'Slow down gradually when the session ends.'
+    ],
+    breathing: 'Breathe rhythmically through your nose, mouth, or both as needed.',
+    avoid: 'Do not sprint every run or ignore sharp pain, dizziness, or unusual shortness of breath.',
+    easier: 'Alternate jogging and walking intervals.',
+    video: 'https://www.youtube.com/watch?v=WxKq8548p94'
+  },
+
+  'Walking recovery': {
+    setup: 'After your run, remain upright and begin walking at an easy pace.',
+    steps: [
+      'Walk slowly for approximately five minutes.',
+      'Relax your shoulders and arms.',
+      'Allow your breathing to gradually return toward normal.',
+      'Continue walking gently until you feel comfortable stopping.'
+    ],
+    breathing: 'Take comfortable, steady breaths.',
+    avoid: 'Do not abruptly stop and sit down immediately after a very hard effort unless symptoms require you to stop safely.',
+    easier: 'Walk at whatever comfortable pace you need.',
+    video: 'https://www.youtube.com/watch?v=WxKq8548p94'
+  },
+
+  'Calf stretches': {
+    setup: 'Stand facing a wall with both hands resting against it for balance.',
+    steps: [
+      'Step one foot behind you.',
+      'Keep the back heel on the floor and the back knee straight.',
+      'Bend the front knee and gently lean toward the wall.',
+      'Stop when you feel a mild stretch in the back calf.',
+      'Hold for approximately 30 seconds without bouncing.',
+      'Switch legs and repeat.'
+    ],
+    breathing: 'Breathe slowly and normally.',
+    avoid: 'Do not bounce or push into sharp pain.',
+    easier: 'Shorten your stance or reduce how far you lean.',
+    video: 'https://www.acefitness.org/resources/everyone/exercise-library/'
+  }
+};
+
+const PACE_SKIP_ROASTS = [
+  'Oh, so the couch made the training schedule? — Leah',
+  'Your future personal record would like a word.',
+  'Leah loves you, but the running shoes have questions.',
+  'Your girlfriend made you a whole training app and you chose the couch? Bold.',
+  'Leah can’t do the push-ups for you, handsome. Neither can your excuses.',
+  'Your running shoes are officially filing a missing-person report.',
+  'Your girlfriend built you an entire training app, and you’re speedrunning the Skip button. Impressive.',
+  'Even the stopwatch is disappointed, and it literally has no feelings.',
+  'Plot twist: the couch just set a personal record for your attention.'
+];
+
+const PACE_WATER_JOKES = [
+  'Look at you drinking water like a responsible adult. Leah is impressed. 💚',
+  'Your kidneys would like to thank you for your service.',
+  'Hydrated and handsome? Pick a struggle.',
+  'Another sip? Okay, Aquaman. I see you.',
+  'Your water bottle finally has a purpose besides decoration.',
+  'Leah said drink water, not become a raisin.',
+  'Breaking news: local man remembers water exists.',
+  'Your muscles called. They appreciate the delivery.',
+  'You are one sip closer to being Leah’s favorite hydrated person.',
+  'Water logged. The girlfriend approval rating is rising.'
+];
+
+function paceRandom(items){
+  return items[Math.floor(Math.random()*items.length)];
+}
+
+let paceWaterReaction='';
+
+function paceExerciseGuide(name){
+  const guide=PACE_EXERCISE_GUIDES[name];
+
+  if(!guide){
+    return `<p class="muted">
+      Follow the prescribed sets and repetitions,
+      move with control, and stop if you feel pain.
+    </p>`;
+  }
+
+  return `
+    <details style="margin-top:9px">
+      <summary>📖 How do I do this?</summary>
+
+      <div style="padding:12px 0">
+        <strong>Starting position</strong>
+        <p class="muted">${esc(guide.setup)}</p>
+
+        <strong>Step-by-step instructions</strong>
+        <ol style="padding-left:22px;line-height:1.7">
+          ${guide.steps.map(step=>`
+            <li style="margin-bottom:6px">
+              ${esc(step)}
+            </li>
+          `).join('')}
+        </ol>
+
+        <strong>How to breathe</strong>
+        <p class="muted">${esc(guide.breathing)}</p>
+
+        <strong>Common mistakes</strong>
+        <p class="muted">${esc(guide.avoid)}</p>
+
+        <strong>Easier option</strong>
+        <p class="muted">${esc(guide.easier)}</p>
+
+        <a class="btn alt"
+           href="${esc(guide.video)}"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="
+             display:inline-block;
+             text-decoration:none;
+             margin-top:12px">
+          ▶ Watch / View Demonstration
+        </a>
+
+        <p class="muted" style="font-size:11px">
+          Opens an external exercise demonstration
+          or exercise library.
+        </p>
+      </div>
+    </details>`;
+}
+
+function paceSkipWorkout(){
+  if(state.role!=='athlete')return;
+
+  const reason=prompt(
+    'Why are you skipping today?\n\n' +
+    'Enter: busy, motivation, sick, injured, exhausted, or other.',
+    'busy'
+  );
+
+  if(reason===null)return;
+
+  const normalized=reason.trim().toLowerCase()||'other';
+
+  const recoveryReason=
+    /sick|injur|exhaust|pain|recover|fatigue|unwell/.test(normalized);
+
+  const message=recoveryReason
+    ?'Recovery counts. Take care of yourself; Leah wants you healthy. ❤️'
+    :paceRandom(PACE_SKIP_ROASTS);
+
+  const key=workoutKey();
+  const record=workoutRecord();
+
+  record.skipped=true;
+  record.completed=false;
+  record.completedAt=null;
+  record.skipReason=normalized;
+  record.skipMessage=message;
+  record.skippedAt=new Date().toISOString();
+
+  state.workouts[key]=record;
+
+  queueSync();
+  render();
+}
+
+function paceUndoSkip(){
+  const key=workoutKey();
+  const record=workoutRecord();
+
+  delete record.skipped;
+  delete record.skipReason;
+  delete record.skipMessage;
+  delete record.skippedAt;
+
+  state.workouts[key]=record;
+
+  queueSync();
+  render();
+}
+
+const paceOriginalFinishWorkout=finishWorkout;
+
+finishWorkout=function(){
+  if(workoutRecord().skipped){
+    alert('Undo your skipped workout before completing it.');
+    return;
+  }
+
+  paceOriginalFinishWorkout();
+};
+
+const paceOriginalSetExerciseCompleted=setExerciseCompleted;
+
+setExerciseCompleted=function(index,checked){
+  if(workoutRecord().skipped){
+    alert('Undo your skipped workout first.');
+    return;
+  }
+
+  paceOriginalSetExerciseCompleted(index,checked);
+};
+
+/* REPLACE DAILY WORKOUT DISPLAY */
+
+renderDailyWorkout=function(){
+  const plan=getTrainingDay();
+  const exercises=getTodayExercises();
+
+  if(!plan){
+    return `<div class="card accent">
+      <h3>🌿 Recovery Day</h3>
+      <p class="muted">
+        Rest is part of training. Recover, hydrate,
+        and come back ready for your next session.
+      </p>
+    </div>`;
+  }
+
+  const record=workoutRecord();
+
+  if(record.skipped){
+    return `<div class="card gold">
+      <h3>↷ Workout Skipped</h3>
+
+      <p style="
+        font-size:18px;
+        font-weight:750;
+        line-height:1.5">
+        ${esc(record.skipMessage||'Workout skipped.')}
+      </p>
+
+      <p class="muted">
+        Reason: ${esc(record.skipReason||'Not specified')}
+      </p>
+
+      <p class="muted">
+        This workout is recorded as skipped,
+        not completed.
+      </p>
+
+      <button class="btn"
+        onclick="paceUndoSkip()">
+        Never Mind, I'm Doing It 💪
+      </button>
+    </div>`;
+  }
+
+  const done=exercises.filter((_,i)=>
+    exerciseCompleted(i)
+  ).length;
+
+  const progress=exercises.length
+    ?Math.round(done/exercises.length*100)
+    :0;
+
+  return `<div class="card">
+    <div class="flex">
+      <div>
+        <div class="eyebrow" style="color:#56816b">
+          TODAY'S TRAINING
+        </div>
+        <h3>${esc(plan.theme)}</h3>
+      </div>
+
+      <span class="chip">
+        ${done}/${exercises.length}
+      </span>
+    </div>
+
+    ${progressBar(progress)}
+
+    <p class="muted">
+      Tap "How do I do this?" beneath any exercise
+      for detailed instructions and a demonstration.
+    </p>
+
+    ${exercises.map((exercise,i)=>`
+      <div class="exercise">
+        <div class="row" style="flex-wrap:nowrap">
+          <input
+            class="check"
+            type="checkbox"
+            style="width:22px;flex:none"
+            ${exerciseCompleted(i)?'checked':''}
+            onchange="setExerciseCompleted(${i},this.checked)"
+          >
+
+          <div style="flex:1;min-width:0">
+            <strong>${esc(exercise.name)}</strong>
+
+            <div class="muted">
+              ${esc(exercise.sets)} set(s) ·
+              ${esc(exercise.reps)}
+            </div>
+
+            ${paceExerciseGuide(exercise.name)}
+          </div>
+        </div>
+      </div>
+    `).join('')}
+
+    <button class="btn"
+      style="width:100%;margin-top:15px"
+      onclick="finishWorkout()">
+      ${record.completed
+        ?'✓ Workout Completed'
+        :'✓ Mark Entire Workout Complete'}
+    </button>
+
+    ${!record.completed?`
+      <button class="btn alt"
+        style="
+          width:100%;
+          margin-top:10px;
+          border:1px solid #e2cbb8"
+        onclick="paceSkipWorkout()">
+        ↷ Skip Workout (Leah Will Have Questions)
+      </button>
+    `:''}
+  </div>`;
+};
+
+/* HYDRATION JOKES AND 32-OZ BOTTLE */
+
+const paceOriginalAddWater=addWater;
+
+addWater=function(amount){
+  const before=waterToday();
+
+  paceOriginalAddWater(amount);
+
+  const after=waterToday();
+
+  if(after>before){
+    paceWaterReaction=paceRandom(PACE_WATER_JOKES);
+  }else if(after<before){
+    paceWaterReaction='Water entry corrected. Even legends make mistakes.';
+  }
+
+  render();
+};
+
+renderHydration=function(){
+  const amount=waterToday();
+  const goal=Number(state.waterGoalMl)||2500;
+  const progress=waterProgress();
+
+  return `${sectionHeading(
+    '💧 Hydration Station',
+    'Because apparently Leah has to remind you to drink water.'
+  )}
+
+  <div class="card blue">
+    <div class="flex">
+      <div>
+        <div style="font-size:27px;font-weight:850">
+          ${amount.toLocaleString()} mL
+        </div>
+
+        <div class="muted">
+          of ${goal.toLocaleString()} mL daily goal
+        </div>
+      </div>
+
+      <span class="chip">${progress}%</span>
+    </div>
+
+    ${progressBar(progress)}
+
+    ${paceWaterReaction?`
+      <div class="card gold"
+        style="margin:15px 0;padding:15px">
+        <strong>💚 Leah Says:</strong>
+
+        <p style="
+          font-size:15px;
+          line-height:1.5;
+          margin-bottom:0">
+          ${esc(paceWaterReaction)}
+        </p>
+      </div>
+    `:''}
+
+    <div class="row" style="margin-top:14px">
+      <button class="btn alt"
+        onclick="addWater(250)">
+        +250 mL
+      </button>
+
+      <button class="btn alt"
+        onclick="addWater(500)">
+        +500 mL
+      </button>
+
+      <button class="btn"
+        onclick="addWater(946)">
+        +32 oz Bottle
+      </button>
+
+      <button class="btn alt"
+        onclick="addWater(-250)">
+        −250 mL
+      </button>
+    </div>
+
+    <details>
+      <summary>Change daily water goal</summary>
+
+      <label for="waterGoalInput">
+        Daily water goal (mL)
+      </label>
+
+      <input id="waterGoalInput"
+        type="number"
+        min="250"
+        max="10000"
+        value="${goal}">
+
+      <button class="btn"
+        style="margin-top:10px"
+        onclick="setWaterGoal()">
+        Save Water Goal
+      </button>
+    </details>
+
+    <p class="muted" style="
+      font-size:11px;
+      margin-top:15px">
+      This is a personal tracking goal, not a
+      prescribed hydration requirement. Adjust
+      fluid intake to your needs and conditions.
+    </p>
+  </div>`;
+};
+
+/* ================================================
+   END OF PERSONALITY UPDATE
+   ================================================ */
+
+
 </script>
 </body>
 </html>
